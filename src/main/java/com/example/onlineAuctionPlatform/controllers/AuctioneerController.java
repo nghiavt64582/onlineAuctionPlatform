@@ -1,6 +1,7 @@
 package com.example.onlineAuctionPlatform.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class AuctioneerController {
     }
 
     @GetMapping("/products/{productId}")
-    public Product getProductById(int productId) {
+    public Product getProductById(@PathVariable int productId) {
         return productService.getProductById(productId);
     }
 
@@ -45,8 +46,8 @@ public class AuctioneerController {
         return dbProduct;
     }
 
-    @GetMapping("/productByAuctioneerid/{auctioneerId}")
-    public List<Product> getProductsByAuctinoeerId(int auctioneerId) {
+    @GetMapping("/productsByAuctioneerId/{auctioneerId}")
+    public List<Product> getProductsByAuctioneerId(@PathVariable int auctioneerId) {
         return productService.getProductByAuctioneerId(auctioneerId);
     }
 }

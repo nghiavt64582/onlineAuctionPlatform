@@ -63,7 +63,7 @@ public class Product {
         postedDate = LocalDateTime.now();
     }
 
-    public int getBeginingPrice() {
+    public int getBeginningPrice() {
         return beginningPrice;
     }
 

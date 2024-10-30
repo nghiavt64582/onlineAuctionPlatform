@@ -35,8 +35,10 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN")
             .requestMatchers(HttpMethod.POST, "/admin/authorities").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.GET, "/auctioneer/products").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.POST, "/auctioneer/products").hasRole("AUCTIONEER")
-            .requestMatchers(HttpMethod.POST, "/auctioneer/products/**").hasRole("AUCTIONEER")
+            .requestMatchers(HttpMethod.GET, "/auctioneer/products/**").hasRole("AUCTIONEER")
+            .requestMatchers(HttpMethod.GET, "/auctioneer/productsByAuctioneerId/**").hasRole("AUCTIONEER")
         );
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());

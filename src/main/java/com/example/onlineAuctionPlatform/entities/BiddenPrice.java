@@ -1,6 +1,6 @@
 package com.example.onlineAuctionPlatform.entities;
 
-import org.joda.time.DateTime;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,8 +16,11 @@ public class BiddenPrice {
     private int bidderId;
     private int price;
     private int productId;
-    private DateTime createdDate;
+    private LocalDateTime createdDate;
     
+    public BiddenPrice() {
+    }
+
     public BiddenPrice(int bidderId, int price, int productId) {
         this.bidderId = bidderId;
         this.price = price;
@@ -40,7 +43,7 @@ public class BiddenPrice {
         return productId;
     }
 
-    public DateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 

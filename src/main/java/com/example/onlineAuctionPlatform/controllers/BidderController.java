@@ -1,25 +1,29 @@
 package com.example.onlineAuctionPlatform.controllers;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.onlineAuctionPlatform.entities.BiddenPrice;
 import com.example.onlineAuctionPlatform.entities.Bidder;
+import com.example.onlineAuctionPlatform.services.bidden_price.BiddenPriceService;
 import com.example.onlineAuctionPlatform.services.bidder.BidderService;
-import com.google.gson.Gson;
 
 @RestController
 @RequestMapping("/bidder")
 public class BidderController {
 
-    private static final Gson gson = new Gson();
     private BidderService bidderService;
+    private BiddenPriceService biddenPriceService;
     
     public BidderController(
-        BidderService bidderService
+        BidderService bidderService,
+        BiddenPriceService biddenPriceService
     ) {
         this.bidderService = bidderService;
+        this.biddenPriceService = biddenPriceService;
     }
 
     @PutMapping("/bidder")
@@ -33,5 +37,11 @@ public class BidderController {
         dbBidder.updateCreatedDate();
 
         bidderService.save(dbBidder);
+    }
+
+    @PostMapping("/bidden_price")
+    public void postBiddenPrice(@RequestBody BiddenPrice biddenPrice) {
+        // BiddenPrice dbBiddenPrice;
+        // biddenPriceService.save(dbBiddenPrice);
     }
 }

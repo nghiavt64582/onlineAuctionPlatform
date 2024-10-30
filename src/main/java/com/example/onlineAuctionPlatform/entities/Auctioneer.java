@@ -56,6 +56,18 @@ public class Auctioneer {
         return cash;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void updateCreatedDate() {
+        this.createdDate = LocalDateTime.now();
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }

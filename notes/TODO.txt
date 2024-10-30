@@ -1,19 +1,21 @@
   - Create class diagrams
   - Create database VV
-  - Create main classes
+  - Create main classes VV
   - CRUD 
-   + Product
-   + Bidder
-   + Auctioneer
-   + 
+   + Product VV
+   + Bidder VV
+   + Auctioneer VV
+   + User VV
+   + Authority VV
+
 
   - Test:
-   + Add account (by admin)
-   + Add Bidder, add cash
-   + Add Auctioneer, add cash
-   + Add Product (by Auctioneer)
+   + Add account (by admin) VV
+   + Add Bidder, add cash VV
+   + Add Auctioneer, add cash VV
+   + Add Product (by Auctioneer) VV
    + Approve Product (by Monitor)
-   + Get Product (by Bidder)
+   + Get Product (by Bidder) VV
    + Bid a price for a product (by Bidder)
    + Accept a price (by Auctioneer)
 

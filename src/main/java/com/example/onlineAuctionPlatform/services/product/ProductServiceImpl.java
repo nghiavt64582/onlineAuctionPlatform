@@ -5,15 +5,22 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.example.onlineAuctionPlatform.entities.BiddenPrice;
 import com.example.onlineAuctionPlatform.entities.Product;
+import com.example.onlineAuctionPlatform.services.bidden_price.BiddenPriceRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService{
 
     private ProductRepository productRepo;
+    private BiddenPriceRepository biddenPriceRepository;
 
-    public ProductServiceImpl(ProductRepository productRepo) {
+    public ProductServiceImpl(
+        ProductRepository productRepo,
+        BiddenPriceRepository biddenPriceRepository
+    ) {
         this.productRepo = productRepo;
+        this.biddenPriceRepository = biddenPriceRepository;
     }
 
     @Override
@@ -41,6 +48,18 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public Product save(Product product) {
         return productRepo.save(product);
+    }
+
+    @Override
+    public int getHighestBiddenPriceByProductId(int productId) {
+        List<BiddenPrice> biddenPrices = biddenPriceRepository.findAll().stream().sorted((b1, b2) -> {
+            return Integer.compare(b1.getPrice(), b2.getPrice());
+        }).toList();
+        if (biddenPrices.size() == 0) {
+            return 0;
+        } else {
+            return biddenPrices.get(0).getPrice();
+        }
     }
     
 }

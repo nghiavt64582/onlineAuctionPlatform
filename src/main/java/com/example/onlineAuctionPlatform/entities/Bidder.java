@@ -13,8 +13,8 @@ public class Bidder {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int name;
-    private int email;
+    private String name;
+    private String email;
     private int cash;
     private String username;
     private LocalDateTime createdDate;
@@ -24,8 +24,8 @@ public class Bidder {
 
     public Bidder(
         int id, 
-        int name, 
-        int email, 
+        String name, 
+        String email, 
         int cash,
         String username,
         int createdDate
@@ -56,19 +56,19 @@ public class Bidder {
         this.id = id;
     }
     
-    public int getName() {
+    public String getName() {
         return name;
     }
-    
-    public void setName(int name) {
+
+    public void setName(String name) {
         this.name = name;
     }
-    
-    public int getEmail() {
+
+    public String getEmail() {
         return email;
     }
-    
-    public void setEmail(int email) {
+
+    public void setEmail(String email) {
         this.email = email;
     }
     
@@ -84,4 +84,11 @@ public class Bidder {
         return createdDate;
     }
    
+    public void updateCreatedDate() {
+        if (this.createdDate == null) {
+            this.createdDate = LocalDateTime.now();
+        }
+    }
+
+
 }

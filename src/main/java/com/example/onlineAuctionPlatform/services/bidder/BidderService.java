@@ -4,5 +4,9 @@ import com.example.onlineAuctionPlatform.entities.Bidder;
 
 public interface BidderService {
      
-    Bidder addBidderByUsername(String username);
+    Bidder addByUsername(String username);
+
+    Bidder save(Bidder bidder);
+
+    Bidder getById(int id);
 }

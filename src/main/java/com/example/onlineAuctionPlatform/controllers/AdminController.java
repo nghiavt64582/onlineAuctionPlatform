@@ -67,7 +67,7 @@ public class AdminController {
             auctioneerService.addAuctioneerByUsername(authority.getUsername());
         }
         if (authority.getAuthority().endsWith(Role.BIDDER.toString())) {
-            bidderService.addBidderByUsername(authority.getUsername());
+            bidderService.addByUsername(authority.getUsername());
         };
         System.out.println("Save authority : " + gson.toJson(authority).toString());
         Authority dbAuth = authorityService.save(authority);

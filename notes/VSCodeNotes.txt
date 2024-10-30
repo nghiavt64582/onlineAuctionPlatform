@@ -1,0 +1,11 @@
+Ctrl + Shift + [ on Windows and Linux
+Unfold unfolds the collapsed region at the cursor:
+
+Ctrl + Shift + ] on Windows and Linux
+Fold All folds all regions in the editor:
+
+Ctrl + K, Ctrl + 0 (zero)
+Unfold All unfolds all regions in the editor:
+
+Ctrl + K, Ctrl + J on Windows 
+⌘ + K, ⌘ + J on macOS

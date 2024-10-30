@@ -1,0 +1,17 @@
+- Admin:
+ + Show, create, edit information, role of each account
+- Monitor:
+ + Create Auctioneer, Bidder account.
+ + Accept the posting of auctioneer.
+ + Accept the price.
+- Auctioneer:
+ + Edit self account
+ + Post a new product
+ + Set timer
+ + Accept the price and sell the product
+ + Get list products
+- Bidder:
+ + Edit self account
+ + Add money to account
+ + Create a bidden price for a product
+ + Get list products (by filter)

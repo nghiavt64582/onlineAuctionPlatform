@@ -1,0 +1,26 @@
+Auctioneer:
+ - id
+ - name
+ - email
+ - cash
+ - createdDate
+Product:
+ - id
+ - auctioneerId
+ - imageUrl
+ - postedDate
+ - beginingPrice
+ - currentPrice
+ - state (PENDING, AUCTIONING, SOLD)
+BiddenPrice:
+ - id
+ - bidderId
+ - price
+ - productId
+ - createdDate
+Bidder
+ - id
+ - name
+ - email
+ - cash
+ - createdDate

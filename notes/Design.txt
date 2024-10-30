@@ -1,0 +1,12 @@
+auction tables:
+ - User (for authentication) 
+   + username
+   + password
+ - Authorities
+   + username
+   + role
+ - Auctioner
+   + username
+   + display_name
+ - Seller
+ - Product

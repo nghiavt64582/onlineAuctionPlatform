@@ -17,6 +17,7 @@ values
 ('susan', '{noop}test123', 1);
 
 create table `authority` (
+    `id` int not null auto_increment primary key,
 	`username` varchar(50) not null,
     `authority` varchar(50) not null,
     unique key `authority_idx_1` (`username`, `authority`),

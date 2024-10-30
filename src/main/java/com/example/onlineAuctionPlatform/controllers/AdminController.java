@@ -12,8 +12,10 @@ import com.example.onlineAuctionPlatform.enums.Role;
 import com.example.onlineAuctionPlatform.helpers.UserHelper;
 import com.example.onlineAuctionPlatform.services.auctioneer.AuctioneerService;
 import com.example.onlineAuctionPlatform.services.authority.AuthorityService;
+import com.example.onlineAuctionPlatform.services.bidder.BidderService;
 import com.example.onlineAuctionPlatform.services.user.UserService;
 // import com.google.gson.Gson;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -24,16 +26,19 @@ public class AdminController {
     private UserService userService;
     private AuthorityService authorityService;
     private AuctioneerService auctioneerService;
-    // private Gson gson = new Gson();
+    private BidderService bidderService;
+    private Gson gson = new Gson();
     
     public AdminController(
         UserService userService, 
         AuthorityService authorityService,
-        AuctioneerService auctioneerService
+        AuctioneerService auctioneerService,
+        BidderService bidderService
     ) {
         this.userService = userService;
         this.authorityService = authorityService;
         this.auctioneerService = auctioneerService;
+        this.bidderService = bidderService;
     }
 
     // get all users
@@ -58,10 +63,15 @@ public class AdminController {
         if  (userService.getByUsername(authority.getUsername()) == null) {
             throw new RuntimeException("No such username");
         }
-        if (authority.getAuthority().contains(Role.AUCTIONEER.toString())) {
+        if (authority.getAuthority().endsWith(Role.AUCTIONEER.toString())) {
             auctioneerService.addAuctioneerByUsername(authority.getUsername());
         }
+        if (authority.getAuthority().endsWith(Role.BIDDER.toString())) {
+            bidderService.addBidderByUsername(authority.getUsername());
+        };
+        System.out.println("Save authority : " + gson.toJson(authority).toString());
         Authority dbAuth = authorityService.save(authority);
+        System.out.println("Saved successfully : " + gson.toJson(authority).toString());
         return dbAuth;
     }
 

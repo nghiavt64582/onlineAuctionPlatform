@@ -30,8 +30,8 @@ public class AuctioneerController {
     }
 
     @GetMapping("/products")
-    public List<Auctioneer> getAuctioneers() {
-        return auctioneerService.getAllAutioneers();
+    public List<Product> getAuctioneers() {
+        return productService.getAllProducts();
     }
 
     @GetMapping("/products/{productId}")

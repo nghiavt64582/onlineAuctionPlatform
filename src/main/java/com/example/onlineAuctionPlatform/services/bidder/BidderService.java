@@ -1,5 +1,8 @@
 package com.example.onlineAuctionPlatform.services.bidder;
 
-public interface BidderService extends BidderRepository {
-    
+import com.example.onlineAuctionPlatform.entities.Bidder;
+
+public interface BidderService {
+     
+    Bidder addBidderByUsername(String username);
 }

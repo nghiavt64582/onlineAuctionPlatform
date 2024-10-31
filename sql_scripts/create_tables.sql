@@ -10,34 +10,34 @@ create table `bidder` (
     `name` varchar(50) default null,
     `email` varchar(50) default null,
     `cash` int,
-    `createdDate` datetime
+    `created_date` datetime
 );
 create table `auctioneer` (
 	`id` int not null auto_increment primary key ,
     `name` varchar(50) default null,
     `email` varchar(50) default null,
     `cash` int,
-    `createdDate` datetime
+    `created_date` datetime
 );
 create table `product` (
 	`id` int not null auto_increment primary key,
-    `auctioneerId` int,
+    `auctioneer_id` int,
     `name` varchar(50) default null,
-    `imageUrl` varchar(150) default null,
+    `image_url` varchar(150) default null,
     `email` varchar(50) default null,
-    `beginningPrice` int,
-    `currentPrice` int,
-    `createdDate` datetime,
-    `postedDate` datetime,
+    `beginning_price` int,
+    `current_price` int,
+    `created_date` datetime,
+    `posted_date` datetime,
     `state` int,
-    constraint `auctioneer_rl` foreign key (`auctioneerId`) references `auctioneer` (`id`)
+    constraint `auctioneer_rl` foreign key (`auctioneer_id`) references `auctioneer` (`id`)
 );
 create table `bidden_price` (
 	`id` int not null auto_increment primary key,
-    `bidderId` int,
-    `productId` int,
+    `bidder_id` int,
+    `product_id` int,
     `price` int,
-    `createdDate` datetime,
-    constraint `bidden_price_rl1` foreign key (`bidderId`) references `bidder` (`id`),
-    constraint `bidden_price_rl2` foreign key (`productId`) references `product` (`id`)
+    `created_date` datetime,
+    constraint `bidden_price_rl1` foreign key (`bidder_id`) references `bidder` (`id`),
+    constraint `bidden_price_rl2` foreign key (`product_id`) references `product` (`id`)
  )

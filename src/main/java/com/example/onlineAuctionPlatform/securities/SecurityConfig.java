@@ -39,6 +39,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.PUT, "/auctioneer/auctioneer").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.POST, "/auctioneer/products").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.GET, "/auctioneer/products/**").hasRole("AUCTIONEER")
+            .requestMatchers(HttpMethod.GET, "/hello").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.GET, "/auctioneer/productsByAuctioneerId/**").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.PUT, "/bidder/bidder").hasRole("BIDDER")
             .requestMatchers(HttpMethod.POST, "/bidder/bidden-price").hasRole("BIDDER")

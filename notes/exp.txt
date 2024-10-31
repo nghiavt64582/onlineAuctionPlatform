@@ -1,1 +1,3 @@
  - Chú ý dấu gạch chéo filter http authority(không có dấu / ở cuối string)
+ - Muốn chạy @scheduled thì phải @EnableScheduling ở class
+ - @Scheduled chỉ chạy với hàm không biến

@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.onlineAuctionPlatform.entities.BiddenPrice;
+import com.example.onlineAuctionPlatform.entities.Bidder;
 import com.example.onlineAuctionPlatform.entities.Product;
-import com.example.onlineAuctionPlatform.helpers.BiddenPriceHelper;
 import com.example.onlineAuctionPlatform.services.bidder.BidderRepository;
 import com.example.onlineAuctionPlatform.services.product.ProductRepository;
 
@@ -52,10 +52,21 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
 
         // check whether biddenPrice is higher than product's current price
         Product product = productRepo.findById(biddenPrice.getProductId()).get();
+        Bidder bidder = bidderRepo.findById(biddenPrice.getBidderId()).get();
         int currentPrice = product.getCurrentPrice();
         int minPrice = (int) (currentPrice * 1.05);
         if (biddenPrice.getPrice() < minPrice) {
             throw new RuntimeException("The price is too low, smallest value : " + minPrice);
+        }
+
+        // check whether bidder has enough money to bid
+        if (bidder.getCash() < biddenPrice.getPrice()) {
+            throw new RuntimeException(
+                "Not enough cash, have : " + 
+                bidder.getCash() + 
+                ", bid : " + 
+                biddenPrice.getPrice()
+            );
         }
 
         // bidden price is valid, save the current price of the product

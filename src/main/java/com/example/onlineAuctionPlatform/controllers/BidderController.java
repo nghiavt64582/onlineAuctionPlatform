@@ -42,6 +42,7 @@ public class BidderController {
     @PostMapping("/bidden-price")
     public BiddenPrice add(@RequestBody BiddenPrice biddenPrice) {
         BiddenPrice dbBiddenPrice = biddenPriceService.add(biddenPrice);
+        dbBiddenPrice.updateCreatedDate();
         return dbBiddenPrice;
     }
 }

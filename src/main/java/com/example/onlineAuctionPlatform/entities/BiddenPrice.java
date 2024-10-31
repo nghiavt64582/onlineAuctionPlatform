@@ -47,5 +47,8 @@ public class BiddenPrice {
         return createdDate;
     }
 
+    public void updateCreatedDate() {
+        this.createdDate = LocalDateTime.now();
+    }
     
 }

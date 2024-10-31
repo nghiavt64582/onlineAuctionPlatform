@@ -39,9 +39,9 @@ public class BidderController {
         bidderService.save(dbBidder);
     }
 
-    @PostMapping("/bidden_price")
-    public void postBiddenPrice(@RequestBody BiddenPrice biddenPrice) {
-        // BiddenPrice dbBiddenPrice;
-        // biddenPriceService.save(dbBiddenPrice);
+    @PostMapping("/bidden-price")
+    public BiddenPrice add(@RequestBody BiddenPrice biddenPrice) {
+        BiddenPrice dbBiddenPrice = biddenPriceService.add(biddenPrice);
+        return dbBiddenPrice;
     }
 }

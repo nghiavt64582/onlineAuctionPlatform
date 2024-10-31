@@ -8,10 +8,12 @@ import com.example.onlineAuctionPlatform.entities.BiddenPrice;
 
 public interface BiddenPriceService {
     
-    @Query("select * from bidden_price where product_id = %?1%")
+    @Query("select u from bidden_price where u.productId = ?1")
     List<BiddenPrice> getBiddenPriceByProductId(int productId);
     
-    @Query("select * from bidden_price where bidder_id = %?1%")
+    @Query("select u from bidden_price where u.bidder_id = ?1")
     List<BiddenPrice> getBiddenPriceByBidderId(int bidderId);
+
+    BiddenPrice add(BiddenPrice biddenPrice);
 
 }

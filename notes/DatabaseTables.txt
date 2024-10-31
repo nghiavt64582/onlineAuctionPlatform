@@ -3,24 +3,24 @@ Auctioneer:
  - name
  - email
  - cash
- - createdDate
+ - created_date
 Product:
  - id
- - auctioneerId
- - imageUrl
- - postedDate
- - beginingPrice
- - currentPrice
+ - auctioneer_id
+ - image_url
+ - posted_date
+ - beginning_price
+ - current_price
  - state (PENDING, AUCTIONING, SOLD)
 BiddenPrice:
  - id
- - bidderId
+ - bidder_id
  - price
- - productId
- - createdDate
+ - product_id
+ - created_date
 Bidder
  - id
  - name
  - email
  - cash
- - createdDate
+ - created_date

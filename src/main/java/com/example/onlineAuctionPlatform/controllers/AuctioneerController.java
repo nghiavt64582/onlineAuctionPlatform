@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.onlineAuctionPlatform.entities.Auctioneer;
-import com.example.onlineAuctionPlatform.entities.Bidder;
 import com.example.onlineAuctionPlatform.entities.Product;
 import com.example.onlineAuctionPlatform.helpers.ProductHelper;
 import com.example.onlineAuctionPlatform.services.auctioneer.AuctioneerService;

@@ -20,6 +20,9 @@ public class Bidder {
     private LocalDateTime createdDate;
 
     public Bidder() {
+        this.id = 10;
+        this.name = "Nghia";
+        this.email = "nghia64582@gmail.com";
     }
 
     public Bidder(

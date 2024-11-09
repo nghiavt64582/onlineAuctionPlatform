@@ -43,6 +43,7 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/auctioneer/productsByAuctioneerId/**").hasRole("AUCTIONEER")
             .requestMatchers(HttpMethod.PUT, "/bidder/bidder").hasRole("BIDDER")
             .requestMatchers(HttpMethod.POST, "/bidder/bidden-price").hasRole("BIDDER")
+            .requestMatchers(HttpMethod.GET, "/info").permitAll()
         );
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());

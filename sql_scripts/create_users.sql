@@ -29,4 +29,4 @@ values
 ('john', 'ROLE_ADMIN'),
 ('john', 'ROLE_MONITOR'),
 ('mary', 'ROLE_MONITOR'),
-('susan', 'ROLE_MONITOR')
+('susan', 'ROLE_MONITOR');

@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>onlineAuctionPlatform</artifactId>
+	<artifactId>online_auction_platform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>onlineAuctionPlatform</name>
+	<name>online_auction_platform</name>
 	<packaging>jar</packaging>
 	<description>Online Auction Platform By Spring</description>
 	<url/>
@@ -28,7 +28,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
+		<java.version>17</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -40,6 +40,22 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.9.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.36</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+
+		<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-redis</artifactId>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
 		<dependency>

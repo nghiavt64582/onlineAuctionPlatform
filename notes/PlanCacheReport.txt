@@ -1,0 +1,13 @@
+- Using normal SQL:
+Total time : 216 ms to get 20 records by id.
+Total time : 73 ms to get 20 records by id.
+Total time : 61 ms to get 20 records by id.
+Total time : 2887 ms to get 990 records by id.
+Total time : 2088 ms to get 990 records by id.
+Total time : 5 ms to get 1 records by id.
+Total time : 4 ms to get 1 records by id.
+Total time : 4 ms to get 1 records by id.
+Total time : 1759 ms to get 990 records by id.
+Total time : 1383 ms to get 990 records by id.
+Total time : 1265 ms to get 990 records by id.
+- Using plan cache

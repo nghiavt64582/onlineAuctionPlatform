@@ -18,4 +18,6 @@ public interface BidderRepository extends PagingAndSortingRepository<Bidder, Int
     @Procedure("GetBidderById")
     @Transactional
     Optional<Bidder> findByBidderIdProcedure(int p_bidder_id);
+
+    Bidder save(Bidder bidder);
 }

@@ -1,7 +1,9 @@
 package com.example.online_auction_platform.services.bidden_price;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
@@ -11,13 +13,15 @@ import com.example.online_auction_platform.entities.Product;
 import com.example.online_auction_platform.services.bidder.BidderRepository;
 import com.example.online_auction_platform.services.product.ProductRepository;
 
+import reactor.core.publisher.Flux;
+import reactor.util.function.Tuple2;
+
 @Service
 public class BiddenPriceServiceImpl implements BiddenPriceService {
 
     private BiddenPriceRepository biddenPriceRepo;
     private ProductRepository productRepo;
     private BidderRepository bidderRepo;
-
     public BiddenPriceServiceImpl(
         BiddenPriceRepository biddenPriceRepo,
         ProductRepository productRepo,
@@ -46,13 +50,13 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
         }
 
         // check if bidderId exist
-        if (bidderRepo.findById(biddenPrice.getBidderId()).isEmpty()) {
+        if (bidderRepo.findByBidderId(biddenPrice.getBidderId()).isEmpty()) {
             throw new RuntimeException("No such bidder id : " + biddenPrice.getBidderId());
         }
 
         // check whether biddenPrice is higher than product's current price
         Product product = productRepo.findById(biddenPrice.getProductId()).get();
-        Bidder bidder = bidderRepo.findById(biddenPrice.getBidderId()).get();
+        Bidder bidder = bidderRepo.findByBidderId(biddenPrice.getBidderId()).get();
         int currentPrice = product.getCurrentPrice();
         int minPrice = (int) (currentPrice * 1.05);
         if (biddenPrice.getPrice() < minPrice) {
@@ -75,5 +79,5 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
         
         return biddenPriceRepo.save(biddenPrice);
     }
-    
+       
 }

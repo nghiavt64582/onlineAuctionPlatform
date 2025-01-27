@@ -30,7 +30,8 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChainAdmin(HttpSecurity httpSecurity) throws Exception {
+        System.out.println("SecurityConfig.filterChainAdmin");
         httpSecurity.authorizeHttpRequests(configurer -> configurer
             .requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN")
@@ -45,6 +46,12 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.POST, "/bidder/bidden-price").hasRole("BIDDER")
             .requestMatchers(HttpMethod.GET, "/info").permitAll()
             .requestMatchers(HttpMethod.GET, "/bidder/bidder-test").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.PUT, "/bidder/bidder").hasRole("BIDDER")
+            .requestMatchers(HttpMethod.POST, "/bidder/bidden-price").hasRole("BIDDER")
+            .requestMatchers(HttpMethod.GET, "/bidder/bidder-test").hasRole("ADMIN")
+            .requestMatchers(HttpMethod.GET, "/product/products").permitAll()
+            .requestMatchers(HttpMethod.GET, "/product/products/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/product/test").permitAll()
         );
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());

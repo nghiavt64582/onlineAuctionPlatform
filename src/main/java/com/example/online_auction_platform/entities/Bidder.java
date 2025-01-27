@@ -5,6 +5,12 @@ import java.time.LocalDateTime;
 import org.hibernate.annotations.NamedQueries;
 import org.hibernate.annotations.NamedQuery;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +20,7 @@ import lombok.Data;
 
 @Entity
 @NamedQueries({
-    @NamedQuery(name="Bidder.findByBidderId", query = "SELECT b FROM Bidder b WHERE b.id = :bidder_id")
+    @NamedQuery(name="Bidder.getBidderById", query = "SELECT b FROM Bidder b WHERE b.id = :bidder_id")
 })
 @Data
 @AllArgsConstructor
@@ -27,7 +33,11 @@ public class Bidder {
     private String email;
     private int cash;
     private String username;
-    private LocalDateTime createdDate;
+    
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss") 
+    @JsonSerialize(using = LocalDateTimeSerializer.class)
+    @Column(name = "created_date")
+    public LocalDateTime createdDate;
 
     public Bidder() {
         this.id = 10;

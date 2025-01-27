@@ -50,13 +50,13 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
         }
 
         // check if bidderId exist
-        if (bidderRepo.findByBidderId(biddenPrice.getBidderId()).isEmpty()) {
+        if (bidderRepo.getBidderById(biddenPrice.getBidderId()).isEmpty()) {
             throw new RuntimeException("No such bidder id : " + biddenPrice.getBidderId());
         }
 
         // check whether biddenPrice is higher than product's current price
         Product product = productRepo.findById(biddenPrice.getProductId()).get();
-        Bidder bidder = bidderRepo.findByBidderId(biddenPrice.getBidderId()).get();
+        Bidder bidder = bidderRepo.getBidderById(biddenPrice.getBidderId()).get();
         int currentPrice = product.getCurrentPrice();
         int minPrice = (int) (currentPrice * 1.05);
         if (biddenPrice.getPrice() < minPrice) {

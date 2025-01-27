@@ -1,89 +1,56 @@
 package com.example.online_auction_platform.entities;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private int auctioneerId;
     private String imageUrl;
-    private LocalDateTime postedDate;
     private int beginningPrice;
     private int currentPrice;
     private int state;
 
-    public Product() {
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "auctioneer_id")
+    @JsonIgnore
+    private Auctioneer auctioneer;
 
-    public Product(int auctioneerId, String imageUrl, LocalDateTime postedDate, int beginningPrice) {
-        this.auctioneerId = auctioneerId;
-        this.imageUrl = imageUrl;
-        this.postedDate = LocalDateTime.now();
-        this.beginningPrice = beginningPrice;
-        this.currentPrice = beginningPrice;
-    }
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<BiddenPrice> biddenPrices;
 
-    public int getId() {
-        return id;
-    }
-    
-    public void setId(int id) {
-        this.id = id;
-    }
-    
-    public int getAuctioneerId() {
-        return auctioneerId;
-    }
-    
-    public void setAuctioneerId(int auctioneerId) {
-        this.auctioneerId = auctioneerId;
-    }
-    
-    public String getImageUrl() {
-        return imageUrl;
-    }
-    
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-    
-    public LocalDateTime getPostedDate() {
-        return postedDate;
-    }
-
-    public void setPostedDate() {
-        postedDate = LocalDateTime.now();
-    }
-
-    public int getBeginningPrice() {
-        return beginningPrice;
-    }
-
-    public void setBeginningPrice(int beginningPrice) {
-        this.beginningPrice = beginningPrice;
-    }
-
-    public int getCurrentPrice() {
-        return currentPrice;
-    }
-
-    public void setCurrentPrice(int currentPrice) {
-        this.currentPrice = currentPrice;
-    }
-
-    public int getState() {
-        return state;
-    }
-
-    public void setState(int state) {
-        this.state = state;
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", beginningPrice=" + beginningPrice +
+                ", currentPrice=" + currentPrice +
+                ", state=" + state +
+                ", auctioneer=" + auctioneer.getId() +
+                ", biddenPrices=" + biddenPrices.stream().map((e) -> {return e.getId();}).collect(Collectors.toList()) +
+                '}';
     }
 }

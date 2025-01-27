@@ -60,7 +60,7 @@ public class AdminController {
     // add a new authority
     @PostMapping("/authorities")
     public Authority setAuthority(@RequestBody Authority authority) {
-        if  (userService.getByUsername(authority.getUsername()) == null) {
+        if  (userService.findByUsername(authority.getUsername()) == null) {
             throw new RuntimeException("No such username");
         }
         if (authority.getAuthority().endsWith(Role.AUCTIONEER.toString())) {

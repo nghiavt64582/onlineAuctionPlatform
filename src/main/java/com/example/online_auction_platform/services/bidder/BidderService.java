@@ -8,7 +8,7 @@ public interface BidderService {
 
     Bidder save(Bidder bidder);
 
-    Bidder getById(int id);
+    Bidder findById(int id);
 
     int calcUserByNameInRange(String method, String name, int min, int max);
 }

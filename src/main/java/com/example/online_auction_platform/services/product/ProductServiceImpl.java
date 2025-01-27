@@ -26,17 +26,18 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> getProductByAuctioneerId(int auctioneerId) {
         return productRepo.findAll().stream().filter(product -> {
-            return product.getAuctioneerId() == auctioneerId;
+            return product.getAuctioneer().getId() == auctioneerId;
         }).toList();
     }
 
     @Override
     public List<Product> getAllProducts() {
+        System.out.println("ProductServiceImpl.getAllProducts");
         return productRepo.findAll();
     }
 
     @Override
-    public Product getProductById(int productId) {
+    public Product findById(int productId) {
         Optional<Product> result = productRepo.findById(productId);
         if (result.isPresent()) {
             return result.get();

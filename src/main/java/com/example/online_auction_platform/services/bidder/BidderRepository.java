@@ -12,12 +12,12 @@ import jakarta.transaction.Transactional;
 public interface BidderRepository extends PagingAndSortingRepository<Bidder, Integer> {
 
     // cached plan
-    Optional<Bidder> findByBidderId(int bidder_id); 
+    Optional<Bidder> getBidderById(int bidder_id); 
 
     // stored procedure
     @Procedure("GetBidderById")
     @Transactional
-    Optional<Bidder> findByBidderIdProcedure(int p_bidder_id);
+    Optional<Bidder> getBidderByIdProcedure(int p_bidder_id);
 
     Bidder save(Bidder bidder);
 }

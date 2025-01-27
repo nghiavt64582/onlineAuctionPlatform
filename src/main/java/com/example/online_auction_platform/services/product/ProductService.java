@@ -9,7 +9,7 @@ public interface ProductService {
     
     List<Product> getAllProducts();
 
-    Product getProductById(int productId);
+    Product findById(int productId);
 
     Product save(Product product);
 

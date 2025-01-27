@@ -30,7 +30,7 @@ public class BidderController {
 
     @PutMapping("/bidder")
     public Bidder updateInfo(@RequestBody Bidder bidder) {
-        Bidder dbBidder = bidderService.getById(bidder.getId());
+        Bidder dbBidder = bidderService.findById(bidder.getId());
         if (dbBidder == null) {
             throw new RuntimeException("No valid bidder with id : " + bidder.getId());
         }

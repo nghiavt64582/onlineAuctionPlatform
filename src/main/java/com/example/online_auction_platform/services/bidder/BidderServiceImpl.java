@@ -28,8 +28,8 @@ public class BidderServiceImpl implements BidderService {
     }
 
     @Override
-    public Bidder getById(int bidderId) {
-        Optional<Bidder> result = bidderRepo.findByBidderId(bidderId);
+    public Bidder findById(int bidderId) {
+        Optional<Bidder> result = bidderRepo.getBidderById(bidderId);
         if (result.isPresent()) {
             return result.get();
         } else {
@@ -45,13 +45,13 @@ public class BidderServiceImpl implements BidderService {
             Optional<Bidder> opBidder = Optional.empty();
             switch (method) {
                 case "PlanCache":
-                    opBidder = bidderRepo.findByBidderId(bidderId);
+                    opBidder = bidderRepo.getBidderById(bidderId);
                     break;
                 case "NormalSQL":
-                    opBidder = bidderRepo.findByBidderId(bidderId);
+                    opBidder = bidderRepo.getBidderById(bidderId);
                     break;
                 case "StoredProcedure":
-                    opBidder = bidderRepo.findByBidderIdProcedure(bidderId);
+                    opBidder = bidderRepo.getBidderByIdProcedure(bidderId);
                     break;
                 default:
                     break;

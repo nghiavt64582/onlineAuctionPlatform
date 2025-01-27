@@ -16,15 +16,15 @@ import java.util.logging.Logger;
 @Component
 public class ControllerAspect {
 
+    // setup logger
+    private Logger myLogger = Logger.getLogger(getClass().getName());
+
     private HashMap<String, AtomicInteger> methodCounter;
 
     private ControllerAspect() {
         methodCounter = new HashMap<>();
-        System.out.println("Create controller aspect.");
+        myLogger.info("Create controller aspect.");
     }
-
-    // setup logger
-    private Logger myLogger = Logger.getLogger(getClass().getName());
 
     // setup pointcut declarations
     @Pointcut("execution(* com.example.online_auction_platform.controllers.*.*(..))")
@@ -50,18 +50,20 @@ public class ControllerAspect {
     }
 
     @Around("forAppFlow()")
-    public void around(ProceedingJoinPoint proceedJoinPoint) {
+    public Object around(ProceedingJoinPoint proceedJoinPoint) {
         // display method we are returning from
         long start = System.currentTimeMillis();
+        Object result = null;
 
         try {
-            proceedJoinPoint.proceed();
+            result = proceedJoinPoint.proceed();
         } catch (Throwable e) {
             e.printStackTrace();
         }
         String method = proceedJoinPoint.toShortString();
         long current = System.currentTimeMillis();
         System.out.println("Method " + method + " took " + (current - start) + " ms to run.");
+        return result;
     }
 }
 

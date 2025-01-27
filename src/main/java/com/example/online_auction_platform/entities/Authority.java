@@ -4,8 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Data;
 
 @Entity
+@Data
 public class Authority {
     
     @Id
@@ -13,23 +15,4 @@ public class Authority {
     private int id;
     private String username;
     private String authority;
-
-    public Authority() {
-    }
-
-    public Authority(
-        String username, 
-        String authority
-    ) {
-        this.username = username;
-        this.authority = authority;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getAuthority() {
-        return authority;
-    }
 }

@@ -8,7 +8,7 @@ public interface UserService {
     
     List<User> getAllUsers();
 
-    User getByUsername(String username);
+    User findByUsername(String username);
 
     // boolean deleteById(int userId);
 

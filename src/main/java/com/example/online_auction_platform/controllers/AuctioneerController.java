@@ -32,7 +32,7 @@ public class AuctioneerController {
 
     @PutMapping("/auctioneer")
     public void update(@RequestBody Auctioneer auctioneer) {
-        Auctioneer dbAuctioneer = auctioneerService.getById(auctioneer.getId());
+        Auctioneer dbAuctioneer = auctioneerService.findById(auctioneer.getId());
         if (dbAuctioneer == null) {
             throw new RuntimeException("No valid bidder with id : " + auctioneer.getId());
         }
@@ -49,8 +49,8 @@ public class AuctioneerController {
     }
 
     @GetMapping("/products/{productId}")
-    public Product getProductById(@PathVariable int productId) {
-        return productService.getProductById(productId);
+    public Product findById(@PathVariable int productId) {
+        return productService.findById(productId);
     }
 
     @PostMapping("/products")

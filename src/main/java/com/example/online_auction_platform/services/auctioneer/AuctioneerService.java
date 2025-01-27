@@ -8,7 +8,7 @@ public interface AuctioneerService {
     
     List<Auctioneer> getAllAutioneers();
 
-    Auctioneer getById(int auctioneerId);
+    Auctioneer findById(int auctioneerId);
 
     boolean deleteById(int auctioneerId);
 

@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getByUsername(String username) {
+    public User findByUsername(String username) {
         Optional<User> result = userRepo.findById(username);
         if (result.isPresent()) {
             return result.get();

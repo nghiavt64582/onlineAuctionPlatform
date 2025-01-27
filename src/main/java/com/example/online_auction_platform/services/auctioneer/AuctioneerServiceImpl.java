@@ -23,7 +23,7 @@ public class AuctioneerServiceImpl implements AuctioneerService {
     }
 
     @Override
-    public Auctioneer getById(int auctioneerId) {
+    public Auctioneer findById(int auctioneerId) {
         Optional<Auctioneer> result = auctioneerRepo.findById(auctioneerId);
         if (result.isPresent()) {
             return result.get();

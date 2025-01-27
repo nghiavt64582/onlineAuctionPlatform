@@ -28,7 +28,6 @@ create table `product` (
     `beginning_price` int,
     `current_price` int,
     `created_date` datetime,
-    `posted_date` datetime,
     `state` int,
     constraint `auctioneer_rl` foreign key (`auctioneer_id`) references `auctioneer` (`id`)
 );

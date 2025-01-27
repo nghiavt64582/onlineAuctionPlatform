@@ -8,7 +8,6 @@ Product:
  - id
  - auctioneer_id
  - image_url
- - posted_date
  - beginning_price
  - current_price
  - state (PENDING, AUCTIONING, SOLD)

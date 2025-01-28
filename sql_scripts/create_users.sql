@@ -8,7 +8,7 @@ create table `user` (
     `password` varchar(50) not null,
     `enabled` tinyint not null,
     primary key (`username`)
-) engine=InnoDB default charset=latin1;
+) engine=MEMORY default charset=latin1;
 
 insert into `user`
 values
@@ -22,7 +22,7 @@ create table `authority` (
     `authority` varchar(50) not null,
     unique key `authority_idx_1` (`username`, `authority`),
     constraint `authority_ibfk_1` foreign key (`username`) references `user` (`username`)
-) engine=InnoDB default charset=latin1;
+) engine=MEMORY default charset=latin1;
 
 insert into `authority`
 values

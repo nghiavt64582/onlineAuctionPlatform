@@ -51,6 +51,8 @@ public class SecurityConfig {
             .requestMatchers(HttpMethod.GET, "/bidder/bidder-test").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/product/products").permitAll()
             .requestMatchers(HttpMethod.GET, "/product/products/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/product/products/id").permitAll()
+            .requestMatchers(HttpMethod.GET, "/product/products/imageUrl").permitAll()
             .requestMatchers(HttpMethod.GET, "/product/test").permitAll()
         );
         httpSecurity.httpBasic(Customizer.withDefaults());

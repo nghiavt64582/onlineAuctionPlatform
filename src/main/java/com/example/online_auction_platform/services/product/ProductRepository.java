@@ -6,4 +6,6 @@ import com.example.online_auction_platform.entities.Product;
 
 public interface ProductRepository extends JpaRepository<Product, Integer> {
     
+    public Product findByImageUrl(String imageUrl);
+
 }

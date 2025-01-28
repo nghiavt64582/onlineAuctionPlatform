@@ -15,4 +15,5 @@ public interface ProductService {
 
     int getHighestBiddenPriceByProductId(int productId);
 
+    Product findByImageUrl(String imageUrl);
 }

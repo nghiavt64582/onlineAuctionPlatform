@@ -62,5 +62,9 @@ public class ProductServiceImpl implements ProductService{
             return biddenPrices.get(0).getPrice();
         }
     }
-    
+ 
+    @Override
+    public Product findByImageUrl(String imageUrl) {
+        return productRepo.findByImageUrl(imageUrl);
+    }
 }

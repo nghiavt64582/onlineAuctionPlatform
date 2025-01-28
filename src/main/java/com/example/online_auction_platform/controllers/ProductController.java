@@ -12,6 +12,8 @@ import com.example.online_auction_platform.entities.Product;
 import com.example.online_auction_platform.services.product.ProductService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -23,8 +25,8 @@ public class ProductController {
     Gson gson = new GsonBuilder()
         .create();
 
-    @GetMapping("/products/{productId}")
-    public Product getProduct(@PathVariable Integer productId) {
+    @GetMapping("/products/id")
+    public Product getProduct(@RequestParam Integer productId) {
         System.out.println("ProductController.getProduct");
         Product result = productService.findById(productId);
         // System.out.println("ProductController.getProduct result: " + gson.toJson(result));
@@ -41,4 +43,10 @@ public class ProductController {
         System.out.println("ProductController.getProducts");
         return productService.getAllProducts();
     }
+
+    @GetMapping("/products/imageUrl")
+    public Product findByImageUrl(@RequestParam String imageUrl) {
+        return productService.findByImageUrl(imageUrl);
+    }
+    
 }

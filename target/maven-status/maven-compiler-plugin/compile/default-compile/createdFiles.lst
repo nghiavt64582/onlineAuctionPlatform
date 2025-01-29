@@ -7,6 +7,7 @@ com\example\online_auction_platform\services\bidden_price\BiddenPriceRepository.
 com\example\online_auction_platform\entities\BiddenPrice.class
 com\example\online_auction_platform\services\user\UserServiceImpl.class
 com\example\online_auction_platform\exceptions\AuctionExceptionResponse.class
+com\example\online_auction_platform\config\LocalDateTimeAdapter.class
 com\example\online_auction_platform\helpers\ProductHelper.class
 com\example\online_auction_platform\services\bidder\BidderService.class
 com\example\online_auction_platform\enums\ProductState.class
@@ -32,6 +33,7 @@ com\example\online_auction_platform\OnLineAuctionPlatformApplication.class
 com\example\online_auction_platform\services\authority\AuthorityServiceImpl.class
 com\example\online_auction_platform\controllers\BiddenPriceController.class
 com\example\online_auction_platform\services\user\UserService.class
+com\example\online_auction_platform\controllers\ProductController.class
 com\example\online_auction_platform\services\auctioneer\AuctioneerService.class
 com\example\online_auction_platform\services\authority\AuthorityRepository.class
 com\example\online_auction_platform\services\product\ProductService.class

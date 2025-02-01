@@ -1,6 +1,5 @@
 package com.example.online_auction_platform.entities;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 

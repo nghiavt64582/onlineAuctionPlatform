@@ -33,6 +33,8 @@ public class SecurityConfig {
     public SecurityFilterChain filterChainAdmin(HttpSecurity httpSecurity) throws Exception {
         System.out.println("SecurityConfig.filterChainAdmin");
         httpSecurity.authorizeHttpRequests(configurer -> configurer
+            .requestMatchers("/ws/**").permitAll()
+            .requestMatchers("/ws").permitAll()
             .requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN")
             .requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN")
             .requestMatchers(HttpMethod.POST, "/admin/authorities").hasRole("ADMIN")

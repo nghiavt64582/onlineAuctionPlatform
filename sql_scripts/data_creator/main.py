@@ -219,9 +219,9 @@ def update_bidden_price():
 
 if __name__ == "__main__":
     start = time()
-    # update_bidder()
-    # update_auctioneer()
-    # update_product()
+    update_bidder()
+    update_auctioneer()
+    update_product()
     update_bidden_price()
 
     print("Time:", time() - start)

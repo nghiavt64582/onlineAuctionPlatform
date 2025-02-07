@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -30,16 +31,10 @@ public class SecurityConfig {
     }
 
     @Bean
+    @Order(2) // Second highest priority
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         System.out.println("SecurityConfig.filterChain");
         httpSecurity.authorizeHttpRequests(auth -> {
-            auth.requestMatchers("/", "/login").permitAll();
-            auth.requestMatchers("/ws/**").permitAll();
-            auth.requestMatchers("/ws").permitAll();
-            auth.requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.POST, "/admin/authorities").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET, "/auctioneer/products").hasRole("AUCTIONEER");
             auth.requestMatchers(HttpMethod.PUT, "/auctioneer/auctioneer").hasRole("AUCTIONEER");
             auth.requestMatchers(HttpMethod.POST, "/auctioneer/products").hasRole("AUCTIONEER");
@@ -53,14 +48,14 @@ public class SecurityConfig {
             auth.requestMatchers(HttpMethod.PUT, "/bidder/bidder").hasRole("BIDDER");
             auth.requestMatchers(HttpMethod.POST, "/bidder/bidden-price").hasRole("BIDDER");
             auth.requestMatchers(HttpMethod.GET, "/bidder/bidder-test").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET, "/product/products").permitAll();
-            auth.requestMatchers(HttpMethod.GET, "/product/products/**").permitAll();
-            auth.requestMatchers(HttpMethod.GET, "/product/products/id").permitAll();
-            auth.requestMatchers(HttpMethod.GET, "/product/products/imageUrl").permitAll();
+            auth.requestMatchers(HttpMethod.GET, "/product/products").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET, "/product/products/**").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET, "/product/products/id").hasRole("ADMIN");
+            auth.requestMatchers(HttpMethod.GET, "/product/products/imageUrl").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET, "/product/test").permitAll();
             auth.requestMatchers(HttpMethod.GET, "/api/auth/google").permitAll();
-        }
-        );
+            auth.anyRequest().permitAll();
+        });
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());
         return httpSecurity.build();

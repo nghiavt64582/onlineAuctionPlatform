@@ -27,6 +27,8 @@ C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\s
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\OnLineAuctionPlatformApplication.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\redis\RedisConfig.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\requests\NameAndRangeRequest.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\securities\AdminSecurityConfig.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\securities\PublicSecurityConfig.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\securities\SecurityConfig.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\auctioneer\AuctioneerRepository.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\auctioneer\AuctioneerService.java
@@ -40,6 +42,7 @@ C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\s
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\bidder\BidderRepository.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\bidder\BidderService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\bidder\BidderServiceImpl.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\login\LoginService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\product\ProductRepository.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\product\ProductService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\product\ProductServiceImpl.java

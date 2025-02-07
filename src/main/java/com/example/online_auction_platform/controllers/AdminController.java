@@ -48,6 +48,13 @@ public class AdminController {
         return result;
     }
 
+    // get an user
+    @GetMapping("/users/{username}")
+    public User getUser(@RequestBody String username) {
+        User user = userService.findByUsername(username);
+        return user;
+    }
+
     // add a new user
     @PostMapping("/users")
     public User add(@RequestBody User user) {

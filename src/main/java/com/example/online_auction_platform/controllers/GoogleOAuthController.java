@@ -21,19 +21,19 @@ public class GoogleOAuthController {
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Value("${google.oauth.client.id}")
-    private static String CLIENT_ID;
+    private String CLIENT_ID;
 
     @Value("${google.oauth.client.secret}")
-    private static String CLIENT_SECRET;
+    private String CLIENT_SECRET;
 
     @Value("${google.oauth.redirect.uri}")
-    private static String REDIRECT_URI;
+    private String REDIRECT_URI;
 
     @Value("${google.oauth.token.uri}")
-    private static String TOKEN_URL;
-    
+    private String TOKEN_URL;
+
     @Value("${google.oauth.userinfo.uri}")
-    private static String USER_INFO_URL;
+    private String USER_INFO_URL;
 
     @GetMapping("/google")
     public ResponseEntity<?> handleGoogleCallback(@RequestParam("code") String code) {

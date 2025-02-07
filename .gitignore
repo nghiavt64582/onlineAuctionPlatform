@@ -3,6 +3,7 @@ HELP.md
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+
 ### STS ###
 .apt_generated
 .classpath
@@ -31,3 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 notes/LinuxServer.txt
+
+### project ###
+avatars/

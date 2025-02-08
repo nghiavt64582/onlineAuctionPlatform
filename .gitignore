@@ -35,3 +35,5 @@ notes/LinuxServer.txt
 
 ### project ###
 avatars/
+target/**
+/target

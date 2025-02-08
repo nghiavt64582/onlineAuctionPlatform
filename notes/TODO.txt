@@ -14,8 +14,8 @@
    + Add Bidder, add cash VV
    + Add Auctioneer, add cash VV
    + Add Product (by Auctioneer) VV
-   + Approve Product (by Monitor)
+   + Approve Product (by Admin) VV
    + Get Product (by Bidder) VV
    + Bid a price for a product (by Bidder) VV
-   + Accept a price (by Auctioneer)
+   + Accept a price (by Auctioneer) VV
 

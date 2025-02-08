@@ -1,17 +1,21 @@
 - Admin:
  + Show, create, edit information, role of each account VV
  + Create Auctioneer, Bidder account. VV
-- Monitor:
  + Accept the posting of auctioneer, approve PENDING -> BIDDING
 - Auctioneer:
- + Edit self account VV
+ + Edit my account's infomation VV
  + Post a new product VV
- + Set timer
- + Accept the price and sell the product
- + Get list products
- + Accept the price.
+ + Accept the price and sell the product.
+ + Get my current list products
+ + Show history (sold products)
 - Bidder:
- + Edit self account
+ + Show products on market
+    + With filter by category, location.
+    + Pageble
+ + Edit my account's infomation
  + Add money to account 
  + Create a bidden price for a product VV
- + Get list products (by filter)
+ + Get list bought products (by filter)
+ + Show history
+- System (auto):
++

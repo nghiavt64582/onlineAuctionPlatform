@@ -1,9 +1,23 @@
-Auctioneer:
+User
+ - id
+ - username
+ - password
+ - email
+ - created_date
+ - last_login
+ - role
+ - enabled
+Authority
  - id
  - name
- - email
+ - authority
+Auctioneer:
+ - id
  - cash
- - created_date
+ - location
+Bidder
+ - id
+ - cash
 Product:
  - id
  - auctioneer_id
@@ -17,9 +31,10 @@ BiddenPrice:
  - price
  - product_id
  - created_date
-Bidder
+Category
  - id
  - name
- - email
- - cash
- - created_date
+ProductCategory
+ - pro_cate_id
+ - product_id
+ - category_id

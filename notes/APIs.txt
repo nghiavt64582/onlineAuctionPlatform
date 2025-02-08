@@ -1,2 +1,22 @@
 GET /auctions-api/products
 GET /auctions-api/products/**
+
+/admin
+GET /admin/users
+GET /admin/users/{userId}
+POST /admin/users, body {User}
+POST /admin/authorities, body {Authority}
+PUT /admin/products/
+
+/auctioneer
+PUT /auctioneer: body {Auctioneer}
+POST /auctioneer/products: body {Product}
+PUT /auctioneer/products-sell/{product_id}
+GET /auctioneer/products/
+
+/bidder
+GET /bidder/
+PUT /bidder: body {Bidder}
+PUT /bidder/cash: body {cash:int}
+POST /bidder/bidden-price: body {BiddenPrice}
+GET /bidder/bought-products/{bidder_id}

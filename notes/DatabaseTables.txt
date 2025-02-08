@@ -21,10 +21,14 @@ Bidder
 Product:
  - id
  - auctioneer_id
+ - name
  - image_url
  - beginning_price
  - current_price
  - state (PENDING, AUCTIONING, SOLD)
+SoldProduct:
+ - id
+ - bidder_id
 BiddenPrice:
  - id
  - bidder_id

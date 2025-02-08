@@ -37,3 +37,6 @@ notes/LinuxServer.txt
 avatars/
 target/**
 /target
+/target
+/target/classes/com
+/target/classes

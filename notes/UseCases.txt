@@ -8,14 +8,15 @@
  + Accept the price and sell the product.
  + Get my current list products
  + Show history (sold products)
+ + Edit a selling product
+ + Remove product from his list
 - Bidder:
  + Show products on market
     + With filter by category, location.
     + Pageble
- + Edit my account's infomation
+ + Edit my account's information
  + Add money to account 
  + Create a bidden price for a product VV
  + Get list bought products (by filter)
- + Show history
 - System (auto):
 +

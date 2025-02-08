@@ -27,6 +27,6 @@ create table `authority` (
 insert into `authority`
 values
 ('john', 'ROLE_ADMIN'),
-('john', 'ROLE_MONITOR'),
-('mary', 'ROLE_MONITOR'),
-('susan', 'ROLE_MONITOR');
+('john', 'ROLE_ADMIN'),
+('mary', 'ROLE_ADMIN'),
+('susan', 'ROLE_ADMIN');

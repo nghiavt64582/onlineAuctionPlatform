@@ -13,7 +13,7 @@ drop table if exists `category`;
 
 create table `user` (
     `id` int auto_increment not null primary key,
-	`username` varchar(50) not null,
+	`username` varchar(50) not null unique,
     `password` varchar(50) not null,
     `enabled` tinyint not null,
     `email` varchar(50) not null,

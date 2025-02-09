@@ -2,6 +2,11 @@
  + Show, create, edit information, role of each account VV
  + Create Auctioneer, Bidder account. VV
  + Accept the posting of auctioneer, approve PENDING -> BIDDING
+ + Get users (Pageble)
+ + Get products (Filter, Pageble)
+ + Get categories (Pageable)
+ + Get bidders (Pageble)
+ + Get auctioneers (Pageble)
 - Auctioneer:
  + Edit my account's infomation VV
  + Post a new product VV

@@ -4,6 +4,8 @@ GET /auctions-api/products/**
 /admin
 GET /admin/users
 GET /admin/users/{userId}
+GET /admin/bidders
+GET /admin/bidder/{bidderId}
 POST /admin/users, body {User}
 POST /admin/authorities, body {Authority}
 PUT /admin/products/

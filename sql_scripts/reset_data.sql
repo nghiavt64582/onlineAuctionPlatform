@@ -1,0 +1,12 @@
+USE `auctions`;
+SET SQL_SAFE_UPDATES = 0;
+DELETE FROM `bidden_price`;
+DELETE FROM `product_category`;
+DELETE FROM `sold_product`;
+DELETE FROM `bidder`;
+DELETE FROM `product`;
+DELETE FROM `auctioneer`;
+DELETE FROM `authority`;
+DELETE FROM `user`;
+DELETE FROM `category`;
+SET SQL_SAFE_UPDATES = 1;

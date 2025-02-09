@@ -2,9 +2,8 @@ package com.example.online_auction_platform.enums;
 
 public enum Role {
     ADMIN(0),
-    MONITOR(1),
-    AUCTIONEER(2),
-    BIDDER(3);
+    AUCTIONEER(1),
+    BIDDER(2);
     
     private int code;
 

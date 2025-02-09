@@ -36,7 +36,7 @@ public class AuctioneerController {
         if (dbAuctioneer == null) {
             throw new RuntimeException("No valid bidder with id : " + auctioneer.getId());
         }
-        dbAuctioneer.setName(auctioneer.getName());
+        dbAuctioneer.setUsername(auctioneer.getUsername());
         dbAuctioneer.setEmail(auctioneer.getEmail());
         dbAuctioneer.updateCreatedDate();
 

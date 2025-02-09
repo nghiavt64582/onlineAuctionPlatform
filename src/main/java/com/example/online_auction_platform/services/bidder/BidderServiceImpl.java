@@ -37,31 +37,4 @@ public class BidderServiceImpl implements BidderService {
         }
     }
 
-    @Override
-    public int calcUserByNameInRange(String method, String name, int min, int max) {
-        long start = System.currentTimeMillis();
-        int result = 0;
-        for (int bidderId = min; bidderId <= max; bidderId++) {
-            Optional<Bidder> opBidder = Optional.empty();
-            switch (method) {
-                case "PlanCache":
-                    opBidder = bidderRepo.getBidderById(bidderId);
-                    break;
-                case "NormalSQL":
-                    opBidder = bidderRepo.getBidderById(bidderId);
-                    break;
-                case "StoredProcedure":
-                    opBidder = bidderRepo.getBidderByIdProcedure(bidderId);
-                    break;
-                default:
-                    break;
-            }
-            if (opBidder.isPresent()) {
-                Bidder bidder = opBidder.get();
-                result += bidder.getName().contains(name) ? 1 : 0;
-            }
-        }
-        System.out.println("Total time by using " + method + " : " + (System.currentTimeMillis() - start) + " ms to get " + (max - min) + " records by id.");
-        return result;
-    }
 }

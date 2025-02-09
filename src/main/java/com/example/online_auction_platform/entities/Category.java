@@ -5,19 +5,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.Table;
 
 @Entity
-@Data
-public class Authority {
+@Table(name = "category")
+public class Category {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "username")
-    private String username;
-
-    @Column(name = "authority")
-    private String authority;
+    @Column(name = "name")
+    private String name;
 }

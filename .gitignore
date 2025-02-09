@@ -3,7 +3,6 @@ HELP.md
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-
 ### STS ###
 .apt_generated
 .classpath
@@ -35,8 +34,7 @@ notes/LinuxServer.txt
 
 ### project ###
 avatars/
-target/**
+target/
 /target
+*.class
 /target
-/target/classes/com
-/target/classes

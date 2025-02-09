@@ -1,32 +1,54 @@
 package com.example.online_auction_platform.entities;
 
+import java.time.LocalDateTime;
+
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import lombok.Data;
+import lombok.experimental.SuperBuilder;
 
+@Data
 @Entity
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
     
     @Id
     @Size(max = 25, min = 5)
     @Pattern(regexp = "^[a-zA-Z0-9.]+$")
-    private String username;
+    @Column(name = "id")
+    protected int id;
+
+    @Column(name = "username")
+    protected String username;
 
     @Column(name = "password")
-    private String password;
+    protected String password;
 
     @Column(name = "avatar")
-    private String avatar;
+    protected String avatar;
 
     @Column(name = "role")
-    private String role;
+    protected String role;
 
     @Column(name = "enabled")
-    private int enabled;
-    
+    protected int enabled;
+
+    @Column(name = "email")
+    protected String email;
+
+    @Column(name = "created_date")
+    protected LocalDateTime createdDate;
+
+    @Column(name = "last_login")
+    protected LocalDateTime lastLogin;
+
     public User(String username, String password, int enabled) {
         this.username = username;
         this.password = password;

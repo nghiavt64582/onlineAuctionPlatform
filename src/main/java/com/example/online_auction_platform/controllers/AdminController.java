@@ -8,13 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.online_auction_platform.entities.Authority;
 import com.example.online_auction_platform.entities.User;
-import com.example.online_auction_platform.enums.Role;
 import com.example.online_auction_platform.helpers.UserHelper;
-import com.example.online_auction_platform.services.auctioneer.AuctioneerService;
-import com.example.online_auction_platform.services.authority.AuthorityService;
-import com.example.online_auction_platform.services.bidder.BidderService;
-import com.example.online_auction_platform.services.user.UserService;
-// import com.google.gson.Gson;
+import com.example.online_auction_platform.services.AuthorityService;
+import com.example.online_auction_platform.services.UserService;
 import com.google.gson.Gson;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.login;
+package com.example.online_auction_platform.services;
 
 public interface LoginService {
     

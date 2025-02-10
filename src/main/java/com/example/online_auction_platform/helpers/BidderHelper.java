@@ -1,7 +1,7 @@
 package com.example.online_auction_platform.helpers;
 
 import com.example.online_auction_platform.entities.BiddenPrice;
-import com.example.online_auction_platform.services.product.ProductService;
+import com.example.online_auction_platform.services.ProductService;
 
 public class BidderHelper {
     

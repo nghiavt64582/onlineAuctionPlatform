@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.redis;
+package com.example.online_auction_platform.services;
 
 public interface RedisService {
     

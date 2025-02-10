@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.product;
+package com.example.online_auction_platform.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.user;
+package com.example.online_auction_platform.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,27 +6,25 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.online_auction_platform.entities.User;
+import com.example.online_auction_platform.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserService {
 
     private UserRepository userRepo;
 
-    public UserServiceImpl(UserRepository userRepo) {
+    public UserService(UserRepository userRepo) {
         this.userRepo = userRepo;
     }
 
-    @Override
     public List<User> getAllUsers() {
         return userRepo.findAll();
     }
 
-    @Override
     public User save(User user) {
         return userRepo.save(user);
     }
 
-    @Override
     public User findByUsername(String username) {
         Optional<User> result = userRepo.findById(username);
         if (result.isPresent()) {

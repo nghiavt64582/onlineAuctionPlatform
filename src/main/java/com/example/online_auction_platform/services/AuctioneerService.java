@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.auctioneer;
+package com.example.online_auction_platform.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,22 +6,21 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.example.online_auction_platform.entities.Auctioneer;
+import com.example.online_auction_platform.repositories.AuctioneerRepository;
 
 @Service
-public class AuctioneerServiceImpl implements AuctioneerService {
+public class AuctioneerService {
     
     private AuctioneerRepository auctioneerRepo;
 
-    public AuctioneerServiceImpl(AuctioneerRepository auctioneerRepo) {
+    public AuctioneerService(AuctioneerRepository auctioneerRepo) {
         this.auctioneerRepo = auctioneerRepo;
     }
 
-    @Override
     public List<Auctioneer> getAllAutioneers() {
         return auctioneerRepo.findAll();
     }
 
-    @Override
     public Auctioneer findById(int auctioneerId) {
         Optional<Auctioneer> result = auctioneerRepo.findById(auctioneerId);
         if (result.isPresent()) {
@@ -31,7 +30,6 @@ public class AuctioneerServiceImpl implements AuctioneerService {
         }
     }
 
-    @Override
     public boolean deleteById(int auctioneerId) {
         if  (auctioneerRepo.findById(auctioneerId).isEmpty()) {
             return false;
@@ -40,7 +38,6 @@ public class AuctioneerServiceImpl implements AuctioneerService {
         return true;
     }
 
-    @Override
     public Auctioneer save(Auctioneer auctioneer) {
         return auctioneerRepo.save(auctioneer);
     }

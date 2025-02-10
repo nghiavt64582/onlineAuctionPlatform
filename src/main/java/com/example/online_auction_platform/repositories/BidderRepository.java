@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.bidder;
+package com.example.online_auction_platform.repositories;
 
 import java.util.Optional;
 

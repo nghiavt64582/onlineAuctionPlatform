@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.bidden_price;
+package com.example.online_auction_platform.services;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +13,13 @@ import com.example.online_auction_platform.repositories.BidderRepository;
 import com.example.online_auction_platform.repositories.ProductRepository;
 
 @Service
-public class BiddenPriceServiceImpl implements BiddenPriceService {
+public class BiddenPriceService {
 
     private BiddenPriceRepository biddenPriceRepo;
     private ProductRepository productRepo;
     private BidderRepository bidderRepo;
 
-    public BiddenPriceServiceImpl(
+    public BiddenPriceService(
         BiddenPriceRepository biddenPriceRepo,
         ProductRepository productRepo,
         BidderRepository bidderRepo
@@ -29,17 +29,14 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
         this.bidderRepo = bidderRepo;
     }
 
-    @Override
     public List<BiddenPrice> getBiddenPriceByProductId(int productId) {
         return biddenPriceRepo.findByProductId(productId);
     }
 
-    @Override
     public List<BiddenPrice> getBiddenPriceByBidderId(int bidderId) {
         return new ArrayList<>();
     }
 
-    @Override
     public BiddenPrice add(BiddenPrice biddenPrice) {
         // check if productId exist
         if (productRepo.findById(biddenPrice.getProductId()).isEmpty()) {

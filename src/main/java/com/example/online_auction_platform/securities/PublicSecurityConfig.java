@@ -14,6 +14,7 @@ public class PublicSecurityConfig {
     public SecurityFilterChain publicSecurity(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers("/avatars/**").permitAll();
+            auth.requestMatchers("/").permitAll();
         });
         http.csrf(csrf -> csrf.disable());
         return http.build();

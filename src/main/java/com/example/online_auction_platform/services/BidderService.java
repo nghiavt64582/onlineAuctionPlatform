@@ -1,4 +1,4 @@
-package com.example.online_auction_platform.services.bidder;
+package com.example.online_auction_platform.services;
 
 import java.util.Optional;
 
@@ -6,23 +6,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.online_auction_platform.entities.Bidder;
+import com.example.online_auction_platform.repositories.BidderRepository;
 
 @Service
 @Transactional() 
-public class BidderServiceImpl implements BidderService {
+public class BidderService {
 
     private BidderRepository bidderRepo;
 
-    public BidderServiceImpl(BidderRepository bidderRepo) {
+    public BidderService(BidderRepository bidderRepo) {
         this.bidderRepo = bidderRepo;
     }
 
-    @Override
     public Bidder save(Bidder bidder) {
         return bidderRepo.save(bidder);
     }
 
-    @Override
     public Bidder findById(int bidderId) {
         Optional<Bidder> result = bidderRepo.getBidderById(bidderId);
         if (result.isPresent()) {

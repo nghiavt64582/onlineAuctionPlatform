@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.online_auction_platform.entities.Product;
-import com.example.online_auction_platform.services.product.ProductService;
+import com.example.online_auction_platform.services.ProductService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.springframework.web.bind.annotation.RequestParam;

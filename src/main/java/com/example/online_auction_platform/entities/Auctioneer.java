@@ -33,16 +33,6 @@ public class Auctioneer extends User {
     @OneToMany(mappedBy = "auctioneer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Product> products;
 
-    public Auctioneer(String username) {
-        this.cash = 0;
-        this.createdDate = LocalDateTime.now();
-    }
-
-    public Auctioneer(String name, String email, int cash, LocalDateTime createdDate) {
-        this.cash = cash;
-        this.createdDate = LocalDateTime.now();
-    }
-
     public void updateCreatedDate() {
         this.createdDate = LocalDateTime.now();
     }

@@ -25,10 +25,9 @@ class online_auction_platformApplicationTests {
 	@Test
 	void testJpa() {
 		Bidder bidder = Bidder.builder()
-			.name("Trần Trung Sức")
+			.username("Trần Trung Sức")
 			.email("suctt2912@gmail.com")
 			.cash(1)
-			.username("")
 			.createdDate(LocalDateTime.of(2022, 8, 12, 9, 0, 0))
 			.build();
 		bidderService.save(bidder);

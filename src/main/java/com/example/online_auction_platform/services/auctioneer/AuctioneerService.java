@@ -13,6 +13,4 @@ public interface AuctioneerService {
     boolean deleteById(int auctioneerId);
 
     Auctioneer save(Auctioneer auctioneer);
-
-    Auctioneer addAuctioneerByUsername(String username);
 }

@@ -9,7 +9,6 @@ import com.example.online_auction_platform.entities.Auctioneer;
 
 @Service
 public class AuctioneerServiceImpl implements AuctioneerService {
-
     
     private AuctioneerRepository auctioneerRepo;
 
@@ -46,9 +45,4 @@ public class AuctioneerServiceImpl implements AuctioneerService {
         return auctioneerRepo.save(auctioneer);
     }
 
-    @Override
-    public Auctioneer addAuctioneerByUsername(String username) {
-        return auctioneerRepo.save(new Auctioneer(username));
-    }
-    
 }

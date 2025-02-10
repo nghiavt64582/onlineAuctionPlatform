@@ -18,11 +18,6 @@ public class BidderServiceImpl implements BidderService {
     }
 
     @Override
-    public Bidder addByUsername(String username) {
-        return bidderRepo.save(new Bidder(username));
-    }
-
-    @Override
     public Bidder save(Bidder bidder) {
         return bidderRepo.save(bidder);
     }

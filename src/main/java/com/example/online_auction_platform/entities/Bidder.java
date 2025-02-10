@@ -20,20 +20,6 @@ public class Bidder extends User {
 
     @Column(name = "cash")
     private int cash;
-    
-    public Bidder(
-        int id, 
-        String name, 
-        String email, 
-        int cash,
-        String username,
-        int createdDate
-    ) {
-        super();
-    }
-
-    public Bidder(String username) {
-    }
    
     public void updateCreatedDate() {
         if (this.createdDate == null) {

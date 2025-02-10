@@ -25,20 +25,14 @@ public class AdminController {
 
     private UserService userService;
     private AuthorityService authorityService;
-    private AuctioneerService auctioneerService;
-    private BidderService bidderService;
     private Gson gson = new Gson();
     
     public AdminController(
-        UserService userService, 
-        AuthorityService authorityService,
-        AuctioneerService auctioneerService,
-        BidderService bidderService
+        UserService userService,
+        AuthorityService authorityService
     ) {
         this.userService = userService;
         this.authorityService = authorityService;
-        this.auctioneerService = auctioneerService;
-        this.bidderService = bidderService;
     }
 
     // get all users
@@ -70,12 +64,6 @@ public class AdminController {
         if  (userService.findByUsername(authority.getUsername()) == null) {
             throw new RuntimeException("No such username");
         }
-        if (authority.getAuthority().endsWith(Role.AUCTIONEER.toString())) {
-            auctioneerService.addAuctioneerByUsername(authority.getUsername());
-        }
-        if (authority.getAuthority().endsWith(Role.BIDDER.toString())) {
-            bidderService.addByUsername(authority.getUsername());
-        };
         System.out.println("Save authority : " + gson.toJson(authority).toString());
         Authority dbAuth = authorityService.save(authority);
         System.out.println("Saved successfully : " + gson.toJson(authority).toString());

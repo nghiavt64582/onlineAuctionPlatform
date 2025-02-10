@@ -1,20 +1,16 @@
 package com.example.online_auction_platform.services.bidden_price;
 
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
 import com.example.online_auction_platform.entities.BiddenPrice;
 import com.example.online_auction_platform.entities.Bidder;
 import com.example.online_auction_platform.entities.Product;
-import com.example.online_auction_platform.services.bidder.BidderRepository;
-import com.example.online_auction_platform.services.product.ProductRepository;
-
-import reactor.core.publisher.Flux;
-import reactor.util.function.Tuple2;
+import com.example.online_auction_platform.repositories.BiddenPriceRepository;
+import com.example.online_auction_platform.repositories.BidderRepository;
+import com.example.online_auction_platform.repositories.ProductRepository;
 
 @Service
 public class BiddenPriceServiceImpl implements BiddenPriceService {
@@ -22,6 +18,7 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
     private BiddenPriceRepository biddenPriceRepo;
     private ProductRepository productRepo;
     private BidderRepository bidderRepo;
+
     public BiddenPriceServiceImpl(
         BiddenPriceRepository biddenPriceRepo,
         ProductRepository productRepo,
@@ -34,7 +31,7 @@ public class BiddenPriceServiceImpl implements BiddenPriceService {
 
     @Override
     public List<BiddenPrice> getBiddenPriceByProductId(int productId) {
-        return new ArrayList<>();
+        return biddenPriceRepo.findByProductId(productId);
     }
 
     @Override

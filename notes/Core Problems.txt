@@ -1,0 +1,8 @@
+ + A bidder bids 2 products at the same time, 
+ and the total price is higher than his budget (cash).
+
+ + Notify all bidder, who is staying in lobby, and their 
+ product get a new bidden price.
+
+ + Notify an auctioneer when his product get a new bidden 
+ price.

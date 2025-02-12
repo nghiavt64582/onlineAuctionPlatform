@@ -4,8 +4,8 @@ import random as rd
 
 # Configuration
 num_images = 100  # Number of images
-output_dir = "avatars"
-image_path_prefix = "avatar"
+output_dir = "products"
+image_path_prefix = "product"
 img_size = (200, 200)  # Image size (width, height)
 bg_color = (255, 255, 255)  # White background
 text_color = (0, 0, 0)  # Black text

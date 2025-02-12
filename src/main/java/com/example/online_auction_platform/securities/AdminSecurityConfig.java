@@ -14,10 +14,11 @@ public class AdminSecurityConfig {
     @Bean
     public SecurityFilterChain adminSecurity(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
-            auth.requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN");
-            auth.requestMatchers(HttpMethod.POST, "/admin/authorities").hasRole("ADMIN");
             auth.anyRequest().permitAll();
+            // auth.requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN");
+            // auth.requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN");
+            // auth.requestMatchers(HttpMethod.POST, "/admin/authorities").hasRole("ADMIN");
+            // auth.anyRequest().permitAll();
         });
         http.csrf(csrf -> csrf.disable());
         return http.build();

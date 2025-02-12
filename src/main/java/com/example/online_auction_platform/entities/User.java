@@ -33,9 +33,6 @@ public class User {
     @Column(name = "password")
     protected String password;
 
-    @Column(name = "avatar")
-    protected String avatar;
-
     @Column(name = "role")
     protected String role;
 

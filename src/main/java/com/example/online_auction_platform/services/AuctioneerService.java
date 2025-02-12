@@ -1,8 +1,11 @@
 package com.example.online_auction_platform.services;
 
-import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.online_auction_platform.entities.Auctioneer;
@@ -17,8 +20,9 @@ public class AuctioneerService {
         this.auctioneerRepo = auctioneerRepo;
     }
 
-    public List<Auctioneer> getAllAutioneers() {
-        return auctioneerRepo.findAllAuctioneers();
+    public Page<Auctioneer> getAllAutioneers() {
+        Pageable pageable = PageRequest.of(0, 100, Sort.by("ASC"));
+        return auctioneerRepo.findAllAuctioneers(pageable);
     }
 
     public Auctioneer findById(int auctioneerId) {

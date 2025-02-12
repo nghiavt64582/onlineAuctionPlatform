@@ -20,6 +20,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +30,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "product")
 @Inheritance(strategy = InheritanceType.JOINED)
+@Builder
 public class Product {
 
     @Id
@@ -43,6 +45,9 @@ public class Product {
     
     @Column(name = "location")
     private String location;
+
+    @Column(name = "name")
+    private String name;
     
     @Column(name = "sold_date")
     private LocalDateTime soldDate;

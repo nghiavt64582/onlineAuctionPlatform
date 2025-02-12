@@ -1,7 +1,12 @@
 package com.example.online_auction_platform.services;
 
-public interface LoginService {
+import org.springframework.stereotype.Service;
+
+@Service
+public class LoginService {
     
-    public void login(String username, String password);
+    public void login(String username, String password) {
+
+    }
 
 }

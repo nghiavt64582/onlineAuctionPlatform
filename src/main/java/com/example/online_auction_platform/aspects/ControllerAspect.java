@@ -63,7 +63,6 @@ public class ControllerAspect {
         String method = proceedJoinPoint.toShortString();
         long current = System.currentTimeMillis();
         System.out.println("Method " + method + " took " + (current - start) + " ms to run.");
-        System.out.println("Method " + method + " returned: " + result);
         return result;
     }
 }

@@ -60,6 +60,7 @@ public class ProductService {
     }
 
     public Product findByImageUrl(String imageUrl) {
-        return productRepo.findByImageUrl(imageUrl);
+        Optional<Product> result = productRepo.findByImageUrl(imageUrl);
+        return result.get();
     }
 }

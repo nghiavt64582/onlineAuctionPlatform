@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class AdminSecurityConfig {
     
     @Bean
-    public SecurityFilterChain publicSecurity(HttpSecurity http) throws Exception {
+    public SecurityFilterChain adminSecurity(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(HttpMethod.GET, "/admin/users/**").hasRole("ADMIN");
             auth.requestMatchers(HttpMethod.GET, "/admin/users").hasRole("ADMIN");

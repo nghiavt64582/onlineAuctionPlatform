@@ -26,7 +26,7 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        Optional<User> result = userRepo.findById(username);
+        Optional<User> result = userRepo.findByUsername(username);
         if (result.isPresent()) {
             return result.get();
         } else {

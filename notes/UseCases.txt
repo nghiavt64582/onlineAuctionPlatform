@@ -23,5 +23,13 @@
  + Add money to account 
  + Create a bidden price for a product VV
  + Get list bought products (by filter)
-- System (auto):
-+
+
+Bidder UI/UX:
+ + View: Home, History, Bidding products, Available Products, Profiles
+Auctioneer UI/UX:
+ + View: Home, History, Products, Profile
+
+- Key-point:
+ + Bidder: bid 2 product at the same time, with have the total value higher 
+ than current cash.
+ + 

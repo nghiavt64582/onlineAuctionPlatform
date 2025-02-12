@@ -23,7 +23,7 @@ public class BidderService {
     }
 
     public Bidder findById(int bidderId) {
-        Optional<Bidder> result = bidderRepo.getBidderById(bidderId);
+        Optional<Bidder> result = bidderRepo.findById(bidderId);
         if (result.isPresent()) {
             return result.get();
         } else {

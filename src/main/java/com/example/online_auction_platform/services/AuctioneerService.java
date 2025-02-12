@@ -18,7 +18,7 @@ public class AuctioneerService {
     }
 
     public List<Auctioneer> getAllAutioneers() {
-        return auctioneerRepo.findAll();
+        return auctioneerRepo.findAllAuctioneers();
     }
 
     public Auctioneer findById(int auctioneerId) {

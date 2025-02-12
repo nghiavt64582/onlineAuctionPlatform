@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.online_auction_platform.entities.BiddenPrice;
 import com.example.online_auction_platform.entities.Bidder;
-import com.example.online_auction_platform.services.bidden_price.BiddenPriceService;
-import com.example.online_auction_platform.services.bidder.BidderService;
+import com.example.online_auction_platform.services.BiddenPriceService;
+import com.example.online_auction_platform.services.BidderService;
 
 @RestController
 @RequestMapping("/bidder")

@@ -1,9 +1,17 @@
 package com.example.online_auction_platform.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.example.online_auction_platform.entities.Auctioneer;
 
-public interface AuctioneerRepository extends JpaRepository<Auctioneer, Integer> {
-    
+public interface AuctioneerRepository extends UserRepository {
+    public Optional<Auctioneer> findById(int id);
+
+    public List<Auctioneer> findAllAuctioneers();
+
+    public Page<Auctioneer> findAllAuctioneers(Pageable pageable);
 }

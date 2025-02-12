@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.online_auction_platform.entities.Auctioneer;
 import com.example.online_auction_platform.entities.Product;
 import com.example.online_auction_platform.helpers.ProductHelper;
-import com.example.online_auction_platform.services.auctioneer.AuctioneerService;
-import com.example.online_auction_platform.services.product.ProductService;
+import com.example.online_auction_platform.services.AuctioneerService;
+import com.example.online_auction_platform.services.ProductService;
 import java.util.List;
 
 @RestController

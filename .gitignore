@@ -39,3 +39,6 @@ target/
 *.class
 /target
 notes/Server Cloudfly.txt
+/target
+/target
+/target/classes

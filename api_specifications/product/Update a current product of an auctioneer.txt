@@ -1,0 +1,9 @@
+ - Endpoint: PUT /products
+ - Body: AddProductRequestDto (
+    int auctioneerId;
+    int productId;
+    String productName;
+    int startPrice;
+    String location;
+ )
+ - Auth: Role.Auctioneer

@@ -1,0 +1,6 @@
+ - Endpoint: DELETE /products
+ - Body: DeleteProductRequestDto (
+    int auctioneerId;
+    int productId;
+ )
+ - Auth: Role.Auctioneer

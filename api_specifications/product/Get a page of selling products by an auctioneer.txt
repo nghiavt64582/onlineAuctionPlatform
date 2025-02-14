@@ -1,4 +1,4 @@
- - Endpoint: GET /products
+ - Endpoint: GET /products/selling
  - Body: BidderGetProductRequestDto (
     int startId;
     int pageSize;

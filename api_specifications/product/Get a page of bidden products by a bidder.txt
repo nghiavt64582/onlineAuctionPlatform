@@ -1,0 +1,7 @@
+ - Endpoint: GET /products/bidding
+ - Body: GetBiddingProductRequestDto (
+    int bidderId;
+    int startId;
+    int pageSize;
+ )
+ - Auth: Role.Bidder

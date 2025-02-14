@@ -38,14 +38,14 @@ public class RedisAspect {
             pageable.getPageSize(),
             pageable.getOffset()
         );
-        List<Product> redisCachePageProduct = (List<Product>) redisService.getList(key);
+        List<Product> redisCacheListProduct = (List<Product>) redisService.getList(key);
         // if the result is already in the cache, so return the cached value
-        if (redisCachePageProduct != null && !redisCachePageProduct.isEmpty()) {
-            return redisCachePageProduct;
+        if (redisCacheListProduct != null && !redisCacheListProduct.isEmpty()) {
+            return redisCacheListProduct;
         }
         try {
             Page<? extends Object> result = (Page<? extends Object>) proceedJoinPoint.proceed();
-            redisService.cachePage(key, result);
+            redisService.cacheList(key, result);
             return result;
         } catch (Throwable e) {
             e.printStackTrace();

@@ -29,7 +29,7 @@ public class RedisService {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public void cachePage(String key, Page<? extends Object> page) {
+    public void cacheList(String key, Page<? extends Object> page) {
         try {
             String json = objectMapper.writeValueAsString(page);
             redisTemplate.opsForValue().set(key, json);

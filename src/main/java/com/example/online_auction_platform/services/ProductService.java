@@ -3,7 +3,6 @@ package com.example.online_auction_platform.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +18,15 @@ public class ProductService {
     private ProductRepository productRepo;
     private BiddenPriceRepository biddenPriceRepository;
     private ImageService imageService;
-    private RedisService redisService;
 
     public ProductService(
         ProductRepository productRepo,
         BiddenPriceRepository biddenPriceRepository,
-        ImageService imageService,
-        RedisService redisService
+        ImageService imageService
     ) {
         this.productRepo = productRepo;
         this.biddenPriceRepository = biddenPriceRepository;
         this.imageService = imageService;
-        this.redisService = redisService;
     }
 
     public List<Product> getProductByAuctioneerId(int auctioneerId) {

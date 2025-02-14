@@ -1,6 +1,5 @@
 package com.example.online_auction_platform.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;

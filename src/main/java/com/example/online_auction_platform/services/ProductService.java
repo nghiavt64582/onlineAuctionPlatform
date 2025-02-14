@@ -96,24 +96,9 @@ public class ProductService {
     }
 
     public List<Product> findByAuctioneerId(int auctioneerId, Pageable pageable) {
-        // cache object to redis
-        // String key = String.format(
-        //     "Product_%d_%d_%d", 
-        //     auctioneerId,
-        //     pageable.getPageSize(),
-        //     pageable.getOffset()
-        // );
-        // System.out.println("Key : " + key);
-        // List<Product> redisCachePageProduct = (List<Product>) redisService.getPage(key);
-        // if (!redisCachePageProduct.isEmpty()) {
-        //     System.out.println("Return by cache");
-        //     return (List<Product>) redisCachePageProduct;
-        // }
+        // combine with redis aspect
         List<Product> result = productRepo.findByAuctioneer_Id(auctioneerId, pageable).getContent();
-        result.forEach(product -> product.setBiddenPrices(null));
-        // redisService.cacheObject(key, result);
-        
-        // System.out.println("Save to cache, return by data.");
+        result.forEach(product -> product.setBiddenPrices(List.of()));
         return result;
     }
 }

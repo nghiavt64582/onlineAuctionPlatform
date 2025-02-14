@@ -1,5 +1,7 @@
 package com.example.online_auction_platform.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -36,19 +38,24 @@ public class RedisService {
         }
     }
 
-    public Page<? extends Object> getPage(String key) {
-        Object data = redisTemplate.opsForValue().get(key);
-        String json = (String) data;
-        if (json != null) {
-            JavaType type = objectMapper.getTypeFactory().constructParametricType(PageImpl.class, Product.class);
-            try {
-                return objectMapper.readValue(json, type);
-            } catch (Exception e) {
-                System.out.println("Get page error");
-                return Page.empty();
-            }
+    public List<? extends Object> getList(String key) {
+        Object result = redisTemplate.opsForValue().get(key);
+        if (result instanceof List) {
+            return (List) result;
+        } else {
+            return List.of();
         }
-        System.out.println("No data for key");
-        return Page.empty();
+        // List<? extends Object> data = (List) ;
+        // if (data != null) {
+        //     JavaType type = objectMapper.getTypeFactory().constructParametricType(PageImpl.class, Product.class);
+        //     try {
+        //         return objectMapper.readValue(json, type);
+        //     } catch (Exception e) {
+        //         System.out.println("Get page error");
+        //         return List.of();
+        //     }
+        // }
+        // System.out.println("No data for key");
+        // return List.of();
     }
 }

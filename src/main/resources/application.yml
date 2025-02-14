@@ -29,12 +29,12 @@ spring:
 
 google:
     oauth:
-    client:
-        id: 845416159696-1r3jlfhjbt0chvm336a7hg86nern92gl.apps.googleusercontent.com
-        secret: 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
-    redirect:
-        uri: http://localhost:8080/api/auth/google
-    token:
-        uri: https://oauth2.googleapis.com/token
-    userinfo:
-        uri: https://www.googleapis.com/oauth2/v3/userinfo
+        client:
+            id: 845416159696-1r3jlfhjbt0chvm336a7hg86nern92gl.apps.googleusercontent.com
+            secret: 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
+        redirect:
+            uri: http://localhost:8080/api/auth/google
+        token:
+            uri: https://oauth2.googleapis.com/token
+        userinfo:
+            uri: https://www.googleapis.com/oauth2/v3/userinfo

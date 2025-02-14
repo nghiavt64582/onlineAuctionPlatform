@@ -3,8 +3,11 @@ package com.example.online_auction_platform.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.example.online_auction_platform.dto.request.product.PostProductDto;
 import com.example.online_auction_platform.entities.BiddenPrice;
 import com.example.online_auction_platform.entities.Product;
 import com.example.online_auction_platform.repositories.BiddenPriceRepository;
@@ -15,13 +18,19 @@ public class ProductService {
 
     private ProductRepository productRepo;
     private BiddenPriceRepository biddenPriceRepository;
+    private ImageService imageService;
+    private RedisService redisService;
 
     public ProductService(
         ProductRepository productRepo,
-        BiddenPriceRepository biddenPriceRepository
+        BiddenPriceRepository biddenPriceRepository,
+        ImageService imageService,
+        RedisService redisService
     ) {
         this.productRepo = productRepo;
         this.biddenPriceRepository = biddenPriceRepository;
+        this.imageService = imageService;
+        this.redisService = redisService;
     }
 
     public List<Product> getProductByAuctioneerId(int auctioneerId) {
@@ -62,5 +71,49 @@ public class ProductService {
     public Product findByImageUrl(String imageUrl) {
         Optional<Product> result = productRepo.findByImageUrl(imageUrl);
         return result.get();
+    }
+
+    public Product addNewProduct(PostProductDto postProductDto) {
+        
+        // 1. Save image
+        String imagePath;
+        try {
+            imagePath = imageService.addImage(postProductDto.getImage());
+        } catch (Exception e) {
+            throw new RuntimeException("Image is null.");
+        }
+
+        // 2. Process product data
+        Product product = Product.builder()
+            .name(postProductDto.getName())
+            .location(postProductDto.getLocation())
+            .beginningPrice(postProductDto.getPrice())
+            .currentPrice(postProductDto.getPrice())
+            .imageUrl(imagePath).build();
+
+        save(product);
+        return product;
+    }
+
+    public List<Product> findByAuctioneerId(int auctioneerId, Pageable pageable) {
+        // cache object to redis
+        // String key = String.format(
+        //     "Product_%d_%d_%d", 
+        //     auctioneerId,
+        //     pageable.getPageSize(),
+        //     pageable.getOffset()
+        // );
+        // System.out.println("Key : " + key);
+        // List<Product> redisCachePageProduct = (List<Product>) redisService.getPage(key);
+        // if (!redisCachePageProduct.isEmpty()) {
+        //     System.out.println("Return by cache");
+        //     return (List<Product>) redisCachePageProduct;
+        // }
+        List<Product> result = productRepo.findByAuctioneer_Id(auctioneerId, pageable).getContent();
+        result.forEach(product -> product.setBiddenPrices(null));
+        // redisService.cacheObject(key, result);
+        
+        // System.out.println("Save to cache, return by data.");
+        return result;
     }
 }

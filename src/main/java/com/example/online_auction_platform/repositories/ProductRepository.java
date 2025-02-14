@@ -12,6 +12,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     public Page<Product> findAll(Pageable pageable);
 
+    public Page<Product> findByAuctioneer_Id(int auctioneerId, Pageable pageable);
+
     public Optional<Product> findByImageUrl(String imageUrl);
 
 }

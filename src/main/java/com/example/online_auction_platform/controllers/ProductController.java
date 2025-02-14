@@ -1,9 +1,12 @@
 package com.example.online_auction_platform.controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.online_auction_platform.dto.request.product.GetSellingProductDto;
 import com.example.online_auction_platform.dto.request.product.PostProductDto;
 import com.example.online_auction_platform.entities.Product;
 import com.example.online_auction_platform.services.ImageService;
@@ -27,54 +31,36 @@ public class ProductController {
     
     @Autowired
     ProductService productService;
-
-    @Autowired
-    ImageService imageService;
     
     Gson gson = new GsonBuilder().create();
 
-    @GetMapping("/products/id")
-    public Product getProduct(@RequestParam Integer productId) {
+    @GetMapping("/selling")
+    public List<Product> getSellingProduct(
+        @RequestBody GetSellingProductDto requestData
+    ) {
         System.out.println("ProductController.getProduct");
-        Product result = productService.findById(productId);
+        List<Product> result = productService.findByAuctioneerId(
+            requestData.getAuctioneerId(), 
+            PageRequest.of(0, 5)
+        );
         // System.out.println("ProductController.getProduct result: " + gson.toJson(result));
         return result;
     }
 
-    @GetMapping("/test")
-    public String helloWorld() {
-        return "Hello World!";
-    }
-
-    @GetMapping("/products")
-    public List<Product> getProducts() {
+    @GetMapping("/open")
+    public List<Product> getOpenProducts() {
         System.out.println("ProductController.getProducts");
         return productService.getAllProducts();
     }
 
-    @GetMapping("/products/imageUrl")
-    public Product findByImageUrl(@RequestParam String imageUrl) {
-        return productService.findByImageUrl(imageUrl);
+    @PostMapping("")
+    public ResponseEntity<?> addNewProduct(@RequestBody PostProductDto postProductDto) throws IOException {
+        productService.addNewProduct(postProductDto);
+        return ResponseEntity.ok("Product created successfully!");
     }
 
-    @PostMapping("/product")
-    public ResponseEntity<?> createProduct(@RequestBody PostProductDto postProductDto) throws IOException {
-        // 1. Save image
-        String imagePath = imageService.addImage(postProductDto.getImage());
-        if (imagePath == null) {
-            throw new RuntimeException("");
-        }
-
-        // 2. Process product data
-        Product product = Product.builder()
-            .name(postProductDto.getName())
-            .location(postProductDto.getLocation())
-            .beginningPrice(postProductDto.getPrice())
-            .currentPrice(postProductDto.getPrice())
-            .imageUrl(imagePath).build();
-
-        productService.save(product);
-
-        return ResponseEntity.ok("Product created successfully!");
+    @GetMapping("bidding")
+    public List<Product> getBiddingProduct() {
+        return new ArrayList<>();
     }
 }

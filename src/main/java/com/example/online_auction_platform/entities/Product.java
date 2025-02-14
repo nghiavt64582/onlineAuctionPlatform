@@ -60,7 +60,7 @@ public class Product {
     @JsonIgnore
     private Auctioneer auctioneer;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BiddenPrice> biddenPrices;
 
     @Override

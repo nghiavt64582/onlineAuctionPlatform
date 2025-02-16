@@ -5,7 +5,9 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data
-public class PostProductDto {
+public class AddProductReqDto {
+    
+    int auctioneerId;
     String name;
     String description;
     int price;

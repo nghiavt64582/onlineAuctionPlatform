@@ -9,6 +9,8 @@ C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\s
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\controllers\GoogleOAuthController.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\controllers\ProductController.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\controllers\TestController.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\dto\request\product\GetSellingProductDto.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\dto\request\product\PostProductDto.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\entities\Auctioneer.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\entities\Authority.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\entities\BiddenPrice.java
@@ -41,6 +43,8 @@ C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\s
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\AuthorityService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\BiddenPriceService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\BidderService.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\CachingService.java
+C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\ImageService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\LoginService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\ProductService.java
 C:\Users\LaptopKhanhTran\Desktop\Workspace\JavaWorkspace\onlineAuctionPlatform\src\main\java\com\example\online_auction_platform\services\RedisService.java

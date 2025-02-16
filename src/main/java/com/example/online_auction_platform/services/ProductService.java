@@ -3,36 +3,25 @@ package com.example.online_auction_platform.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.online_auction_platform.dto.request.product.PostProductDto;
-import com.example.online_auction_platform.entities.BiddenPrice;
+import com.example.online_auction_platform.dto.request.product.AddProductReqDto;
 import com.example.online_auction_platform.entities.Product;
-import com.example.online_auction_platform.repositories.BiddenPriceRepository;
 import com.example.online_auction_platform.repositories.ProductRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class ProductService {
 
     private ProductRepository productRepo;
-    private BiddenPriceRepository biddenPriceRepository;
     private ImageService imageService;
 
-    public ProductService(
-        ProductRepository productRepo,
-        BiddenPriceRepository biddenPriceRepository,
-        ImageService imageService
-    ) {
-        this.productRepo = productRepo;
-        this.biddenPriceRepository = biddenPriceRepository;
-        this.imageService = imageService;
-    }
-
-    public List<Product> getProductByAuctioneerId(int auctioneerId) {
-        return productRepo.findAll().stream().filter(product -> {
-            return product.getAuctioneer().getId() == auctioneerId;
-        }).toList();
+    public List<Product> findProductByAuctioneerId(int auctioneerId) {
+        return productRepo.findByAuctioneer_Id(auctioneerId, PageRequest.of(0, 20)).getContent();
     }
 
     public List<Product> getAllProducts() {
@@ -53,15 +42,9 @@ public class ProductService {
         return productRepo.save(product);
     }
 
-    public int getHighestBiddenPriceByProductId(int productId) {
-        List<BiddenPrice> biddenPrices = biddenPriceRepository.findAll().stream().sorted((b1, b2) -> {
-            return Integer.compare(b1.getPrice(), b2.getPrice());
-        }).toList();
-        if (biddenPrices.size() == 0) {
-            return 0;
-        } else {
-            return biddenPrices.get(0).getPrice();
-        }
+    public int findHighestBiddenPriceByProductId(int productId) {
+        // todo
+        return 0;
     }
 
     public Product findByImageUrl(String imageUrl) {
@@ -69,22 +52,22 @@ public class ProductService {
         return result.get();
     }
 
-    public Product addNewProduct(PostProductDto postProductDto) {
+    public Product addNewProduct(AddProductReqDto addProductDto) {
         
         // 1. Save image
         String imagePath;
         try {
-            imagePath = imageService.addImage(postProductDto.getImage());
+            imagePath = imageService.addImage(addProductDto.getImage());
         } catch (Exception e) {
             throw new RuntimeException("Image is null.");
         }
 
         // 2. Process product data
         Product product = Product.builder()
-            .name(postProductDto.getName())
-            .location(postProductDto.getLocation())
-            .beginningPrice(postProductDto.getPrice())
-            .currentPrice(postProductDto.getPrice())
+            .name(addProductDto.getName())
+            .location(addProductDto.getLocation())
+            .beginningPrice(addProductDto.getPrice())
+            .currentPrice(addProductDto.getPrice())
             .imageUrl(imagePath).build();
 
         save(product);

@@ -61,7 +61,7 @@ public class AuctioneerController {
     }
 
     @GetMapping("/productsByAuctioneerId/{auctioneerId}")
-    public List<Product> getProductsByAuctioneerId(@PathVariable int auctioneerId) {
-        return productService.getProductByAuctioneerId(auctioneerId);
+    public List<Product> findProductsByAuctioneerId(@PathVariable int auctioneerId) {
+        return productService.findProductByAuctioneerId(auctioneerId);
     }
 }

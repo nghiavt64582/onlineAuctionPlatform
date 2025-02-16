@@ -1,5 +1,5 @@
  - Endpoint: PUT /products
- - Body: AddProductRequestDto (
+ - Body: UpdateProductRequestDto (
     int auctioneerId;
     int productId;
     String productName;

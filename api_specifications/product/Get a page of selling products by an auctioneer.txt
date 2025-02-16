@@ -1,6 +1,8 @@
  - Endpoint: GET /products/selling
- - Body: BidderGetProductRequestDto (
+ - Body: GetSellingProductRequestDto (
     int startId;
+    int auctioneerId;
+    int pageStart;
     int pageSize;
  )
  - Auth: Role.Auctioneer

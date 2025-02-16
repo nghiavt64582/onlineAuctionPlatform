@@ -40,5 +40,6 @@ target/
 /target
 notes/Server Cloudfly.txt
 /target
-/target
 /target/classes
+/src/main/resources/static/images/products
+/products

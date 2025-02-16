@@ -1,6 +1,6 @@
 - Admin:
- + Show, create, edit information, role of each account VV
- + Create Auctioneer, Bidder account. VV
+ + Show, create, edit information, role of each account
+ + Create Auctioneer, Bidder account.
  + Accept the posting of auctioneer, approve PENDING -> BIDDING
  + Get users (Pageble)
  + Get products (Filter, Pageble)
@@ -8,23 +8,38 @@
  + Get bidders (Pageble)
  + Get auctioneers (Pageble)
 - Auctioneer:
- + Edit my account's infomation VV
- + Post a new product VV
+ + Edit my account's infomation
+ + Post a new product
  + Accept the price and sell the product.
  + Get my current list products
  + Show history (sold products)
  + Edit a selling product
  + Remove product from his list
+ + Receive notification when a new bidden-price on my selling product, 
+ both real-time + disk db for later notification.
 - Bidder:
  + Show products on market
     + With filter by category, location.
     + Pageble
  + Edit my account's information
  + Add money to account 
- + Create a bidden price for a product VV
+ + Create a bidden price for a product
  + Get list bought products (by filter)
+ + Receive notification when a new bidden-price on my bidding product, 
+ both real-time + disk db for later notification.
 
 Bidder UI/UX:
- + View: Home, History, Bidding products, Available Products, Profiles
+ + View: 
+   - Home (Current available product on market)
+   - History (Bought products in the past)
+   - My bidding products (The products are being bidden, and one bidder is me)
+   - Profiles (My information (name, email, cash, level, rate, ...))
+   - Notification (Notification about )
 Auctioneer UI/UX:
- + View: Home, History, Products, Profile
+ + View: 
+   - Home (Current available product on market)
+   - History (Sold product in the past)
+   - Add new product (Add a new product to selling list)
+   - My Selling Products (Show selling products state)
+   - Profile (My information (name, email, avatar, cash, ...))
+   - Notification (Notification about )

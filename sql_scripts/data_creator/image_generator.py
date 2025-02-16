@@ -3,13 +3,14 @@ import os
 import random as rd
 
 # Configuration
-num_images = 100  # Number of images
+num_images = 25  # Number of images
 output_dir = "products"
 image_path_prefix = "product"
 img_size = (200, 200)  # Image size (width, height)
 bg_color = (255, 255, 255)  # White background
 text_color = (0, 0, 0)  # Black text
 font_size = 40
+PREFIX = "product"
 
 # Create output directory if it doesn't exist
 os.makedirs(output_dir, exist_ok=True)
@@ -31,7 +32,7 @@ for i in range(num_images):
     img = Image.new("RGB", img_size, bg_color)
     draw = ImageDraw.Draw(img)
     
-    text = f"avatar_{i}"
+    text = PREFIX + "\n" + " " * (len(PREFIX) // 2 + 2) + f"{i}"
     bbox = draw.textbbox((0, 0), text, font=font)  # Get bounding box
     text_width = bbox[2] - bbox[0]
     text_height = bbox[3] - bbox[1]

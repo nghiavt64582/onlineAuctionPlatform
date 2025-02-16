@@ -1,6 +1,9 @@
  - Endpoint: GET /products/open
  - Body: GetOpenProductRequestDto (
     int startId;
+    int bidderId;
+    int pageStart;
     int pageSize;
+    List<String> categories;
  )
  - Auth: Role.Bidder

@@ -1,0 +1,5 @@
+ - Endpoint: GET /categories/favorite
+ - Body: GetAllCategoriesByBidder() {
+    int bidderId;
+ }
+ - Auth: Role.Bidder, Role.Auctioneer, Role.Admin

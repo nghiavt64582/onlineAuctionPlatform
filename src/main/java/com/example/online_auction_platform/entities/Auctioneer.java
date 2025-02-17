@@ -32,8 +32,14 @@ public class Auctioneer extends User {
     @Column(name = "cash")
     private int cash;
 
+    @Column(name = "credit")
+    private int credit;
+
+    @Column(name = "n_sold_product")
+    private int nSoldProducts;
+
     @OneToMany(mappedBy = "auctioneer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Product> products;
+    private List<SoldProduct> soldProducts;
 
     public void updateCreatedDate() {
         this.createdDate = LocalDateTime.now();

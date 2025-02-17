@@ -11,13 +11,17 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @Entity
 @Table(name = "user")
 @SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     
@@ -42,34 +46,22 @@ public class User {
     @Column(name = "email")
     protected String email;
 
+    @Column(name = "age")
+    protected int age;
+
+    @Column(name = "name")
+    protected int name;
+
+    @Column(name = "location")
+    protected String location;
+
+    @Column(name = "cash")
+    protected int cash;
+
     @Column(name = "created_date")
     protected LocalDateTime createdDate;
 
     @Column(name = "last_login")
     protected LocalDateTime lastLogin;
-
-    public User(String username, String password, int enabled) {
-        this.username = username;
-        this.password = password;
-        this.enabled = enabled;
-    }
-
-    public User() {
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
     
-    public int getEnabled() {
-        return enabled;
-    }
-    
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

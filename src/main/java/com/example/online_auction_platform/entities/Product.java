@@ -16,6 +16,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
@@ -49,9 +51,6 @@ public class Product {
     @Column(name = "name")
     private String name;
     
-    @Column(name = "sold_date")
-    private LocalDateTime soldDate;
-    
     @Column(name = "created_date")
     private LocalDateTime createdDate;
 
@@ -62,6 +61,14 @@ public class Product {
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<BiddenPrice> biddenPrices;
+
+    @ManyToMany
+    @JoinTable(
+        name = "product_category",
+        joinColumns = @JoinColumn(name = "product_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
 
     @Override
     public String toString() {

@@ -8,8 +8,4 @@ import com.example.online_auction_platform.entities.Bidder;
 @RestController
 public class TestController {
 
-    @GetMapping("/info")
-    public Bidder getInfo() {
-        return new Bidder();
-    }
 }

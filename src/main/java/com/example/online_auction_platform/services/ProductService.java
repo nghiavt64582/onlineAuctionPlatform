@@ -24,7 +24,10 @@ public class ProductService {
         return productRepo.findByAuctioneer_Id(auctioneerId, PageRequest.of(0, 20)).getContent();
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> findAllOpenProducts(
+        Pageable pageable,
+        List<String> categories
+    ) {
         System.out.println("ProductServiceImpl.getAllProducts");
         return productRepo.findAll();
     }
@@ -79,5 +82,9 @@ public class ProductService {
         List<Product> result = productRepo.findByAuctioneer_Id(auctioneerId, pageable).getContent();
         result.forEach(product -> product.setBiddenPrices(List.of()));
         return result;
+    }
+
+    public List<Product> findBiddingProducts(int bidderId, Pageable pageable) {
+        return List.of();
     }
 }

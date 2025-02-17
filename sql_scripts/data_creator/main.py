@@ -102,8 +102,8 @@ def get_random_date():
 def get_number(st):
     return re.findall(r'\d+', st)
 
-def get_random_categories():
-    global N_CATE
+def create_random_categories():
+    global N_CATE, categories
     categories = []
     VOWEL = "aueio"
     CONSONANT = "mnprtlkhgdsvb"
@@ -138,10 +138,12 @@ def get_random_role():
     return rd.choices(ROLES, weights = probabilities, k=1)[0]
 
 def create_random_users():
-    global users, bidders, auctioneers, N_USERS
+    global users, bidders, bidden_prices, auctioneers, categories, N_USERS
     users = []
     bidders = []
     auctioneers = []
+    bidden_prices = []
+    categories = []
     names = generate_random_vietnamese_name(N_USERS)
     mark_username = set()
     for i in range(N_USERS):
@@ -153,6 +155,9 @@ def create_random_users():
         mark_username.add(username)
         password = "{noop}123456"
         enabled = 1
+        age = rd.randint(18, 50)
+        location = get_random_location()
+        cash = rd.randint(10000, 99999)
         email = convert_name_to_random_email(name)
         created_date = get_random_date()
         last_login = created_date
@@ -164,46 +169,30 @@ def create_random_users():
             "password": password,
             "enabled": enabled,
             "email": email,
+            "name": name,
+            "age": age,
+            "location": location,
+            "cash": cash,            
             "created_date": created_date,
             "last_login": last_login,
-            "role": role
+            "role": role,
+            "n_sold_product": 0,
+            "n_bought_product": 0
         }
         users.append(user)
         if role == "BIDDER":
+            user["n_bought_product"] = 0
             bidders.append(user)
         if role == "AUCTIONEER":
+            user["credit"] = 0
+            user["n_sold_product"] = 0
             auctioneers.append(user)
-    print("Finish create user")
+    print("Finish create random users's data")
 
-def create_insert_bidder_query():
-    global bidders
-    file = open("sql_scripts/insert_bidder_queries.sql", "w", encoding = 'utf-8')
+def create_random_products():
+    global products
 
-    for user in bidders:
-        id = user["id"]
-        cash = get_random_cash()
-        query = f"INSERT INTO bidder VALUES ('{id}', '{cash}'); \n"
-        file.write(query)
-    file.close()
-    print("Finish bidder query")
-
-def create_insert_auctioneer_query():
-    global auctioneers
-    file = open("sql_scripts/insert_auctioneer_queries.sql", "w", encoding = 'utf-8')
-
-    for user in auctioneers:
-        id = user["id"]
-        cash = get_random_cash()
-        query = f"INSERT INTO auctioneer VALUES ('{id}', '{cash}'); \n"
-        file.write(query)
-    file.close()
-    print("Finish auctioneer query")
-
-def create_insert_product_query():    
-    global products, auctioneers, N_PRODUCTS
-    
     products = []
-    file = open("sql_scripts/insert_product_queries.sql", "w", encoding = 'utf-8')
     for i in range(N_PRODUCTS):
         id = i + 1
         auctioneer_id = rd.choice(auctioneers)["id"]
@@ -212,7 +201,7 @@ def create_insert_product_query():
         beginning_price = rd.randint(1000, 9999)
         current_price = beginning_price + rd.randint(1000, 9999)
         created_date = get_random_date()
-        sold_date = get_random_date()
+        sold_date = created_date + dt.timedelta(seconds=rd.randint(100000, 1000000))
         state = get_random_state()
         location = get_random_location()
         product = {
@@ -227,15 +216,15 @@ def create_insert_product_query():
             "state": state,
             "location": location
         }
+        if state == "SOLD":
+            product["bidder_id"] = rd.choice(bidders)["id"]
         products.append(product)
-        query = f"INSERT INTO product VALUES ('{id}', '{auctioneer_id}', '{name}', '{image_url}', '{beginning_price}', '{current_price}', '{created_date}', '{sold_date}', '{state}', '{location}');\n"
-        file.write(query)
-    file.close()
+    print("Finish create random products's data")
 
-def create_insert_bidden_price_query():
-    global users, products, bidders
-    file = open("sql_scripts/insert_bidden_price_queries.sql", "w", encoding = 'utf-8')
+def create_random_bidden_prices():
+    global users, products, bidders, bidden_prices
 
+    bidden_prices = []
     count_id = 0
     rd.shuffle(products)
     for product in products:
@@ -253,15 +242,64 @@ def create_insert_bidden_price_query():
             count_id += 1
             price = previous_price + rd.randint(100, 1000)
             created_date = previous_datetime + dt.timedelta(seconds=rd.randint(1000, 8000))
-            query = f"INSERT INTO bidden_price VALUES ('{count_id}', '{bidder_id}', '{product_id}', '{price}', '{created_date}'); \n"
-            file.write(query)
+            bidden_price = {
+                "id": count_id,
+                "bidder_id": bidder_id,
+                "product_id": product_id,
+                "price": price,
+                "created_date": created_date
+            }
+            bidden_prices.append(bidden_price)
             previous_bidder_id = bidder_id
             previous_datetime = created_date
             previous_price = price
-    file.close()
-    print("Finish bidden price query")
+    print("Finish create random bidden prices's data")
 
-def create_insert_users_query():
+def generate_insert_product_query():    
+    global products, auctioneers, N_PRODUCTS
+    
+    file = open("sql_scripts/insert_product_queries.sql", "w", encoding = 'utf-8')
+    for product in products:
+        id = product["id"]
+        auctioneer_id = product["auctioneer_id"]
+        name = product["name"]
+        image_url = product["image_url"]
+        beginning_price = product["beginning_price"]
+        current_price = product["current_price"]
+        created_date = product["created_date"]
+        state = product["state"]
+        location = product["location"]
+        query = f"INSERT INTO product VALUES ({id}, {auctioneer_id}, '{name}', '{image_url}', {beginning_price}, {current_price}, '{created_date}', '{state}', '{location}');\n"
+        file.write(query)
+    file.close()
+    print("Finish product query")
+
+def generate_insert_bidder_query():
+    global bidders
+    file = open("sql_scripts/insert_bidder_queries.sql", "w", encoding = 'utf-8')
+
+    for user in bidders:
+        id = user["id"]
+        n_bought_product = user["n_bought_product"]
+        query = f"INSERT INTO bidder VALUES ({id}, {n_bought_product}); \n"
+        file.write(query)
+    file.close()
+    print("Finish bidder query")
+
+def generate_insert_auctioneer_query():
+    global auctioneers
+    file = open("sql_scripts/insert_auctioneer_queries.sql", "w", encoding = 'utf-8')
+
+    for user in auctioneers:
+        id = user["id"]
+        credit = user["credit"]
+        n_sold_product = user["n_sold_product"]
+        query = f"INSERT INTO auctioneer VALUES ({id}, {credit}, {n_sold_product}); \n"
+        file.write(query)
+    file.close()
+    print("Finish auctioneer query")
+
+def generate_insert_users_query():
     global users
     name_marker = set()
     file = open("sql_scripts/insert_user_queries.sql", "w", encoding = 'utf-8')
@@ -281,38 +319,40 @@ def create_insert_users_query():
         created_date = user["created_date"]
         last_login = user["last_login"]
         role = user["role"]
-        query = f"INSERT INTO user VALUES ('{id}', '{username}', '{password}', '{enabled}', '{email}', '{created_date}', '{last_login}', '{role}'); \n"
+        age = user["age"]
+        location = user["location"]
+        cash = user["cash"]
+        query = f"INSERT INTO user VALUES ({id}, '{username}', '{password}', {enabled}, '{email}', {age}, '{name}', '{location}', {cash}, '{created_date}', '{last_login}', '{role}'); \n"
         file.write(query)
     file.close()
     print(f"Finish users query, created {count_users}")
 
-def create_insert_authority_query():
+def generate_insert_authority_query():
     global users
     file = open("sql_scripts/insert_authority_queries.sql", "w", encoding = 'utf-8')
     for user in users:
         id = user["id"]
         username = user["username"]
         authority = f"ROLE_{user["role"]}"
-        query = f"INSERT INTO authority VALUES ('{id}', '{username}', '{authority}'); \n"
+        query = f"INSERT INTO authority VALUES ({id}, '{username}', '{authority}'); \n"
         file.write(query)
     file.close()
     print(f"Finish authority query")
 
-def create_insert_category_query():    
-    global categories, N_CATE
+def generate_insert_category_query():    
+    global categories
 
-    categories = get_random_categories()
     file = open("sql_scripts/insert_category_queries.sql", "w", encoding = 'utf-8')
-    for i in range(N_CATE):
+    for i in range(len(categories)):
         id = i + 1
         name = categories[i]
-        query = f"INSERT INTO category VALUES ('{id}', '{name}'); \n"
+        query = f"INSERT INTO category VALUES ({id}, '{name}'); \n"
         file.write(query)
     file.close()
     print("Finish category query")
 
-def create_insert_product_category_query():
-    global products, categories, N_CATE
+def generate_insert_product_category_query():
+    global products, categories
 
     file = open("sql_scripts/insert_product_categories_queries.sql", "w", encoding = 'utf-8')
     count = 0
@@ -320,22 +360,40 @@ def create_insert_product_category_query():
         this_categories_ids = rd.choices([i + 1 for i in range(len(categories))], k = rd.randint(1, 4))
         for category_id in this_categories_ids:
             count += 1
-            query = f"INSERT INTO product_category VALUES ('{count}', '{product["id"]}', '{category_id}'); \n"
+            query = f"INSERT INTO product_category VALUES ({count}, {product["id"]}, {category_id}); \n"
         file.write(query)
     file.close()
     print("Finish product category query")
 
-def create_insert_sold_product_query():
+def generate_insert_sold_product_query():
     global products, bidders
     file = open("sql_scripts/insert_sold_product_queries.sql", "w", encoding = 'utf-8')
     for product in products:
         if product["state"] == "SOLD":
             bidder = rd.choice(bidders)
             product_id = product["id"]
+            sold_date = product["sold_date"]
             bidder_id = bidder["id"]
-            query = f"INSERT INTO sold_product VALUES ('{product_id}', '{bidder_id}'); \n"
+            query = f"INSERT INTO sold_product VALUES ({product_id}, '{sold_date}', {bidder_id}); \n"
             file.write(query)
     file.close()
+    print("Finish sold product query")
+
+def generate_insert_bidden_price_query():
+    global bidden_prices
+
+    file = open("sql_scripts/insert_bidden_price_queries.sql", "w", encoding = 'utf-8')
+    for idx in range(len(bidden_prices)):
+        bidden_price = bidden_prices[idx]
+        id = bidden_price["id"]
+        bidder_id = bidden_price["bidder_id"]
+        product_id = bidden_price["product_id"]
+        price = bidden_price["price"]
+        created_date = bidden_price["created_date"]
+        query = f"INSERT INTO bidden_price VALUES ({id}, {bidder_id}, {product_id}, {price}, '{created_date}'); \n"
+        file.write(query)
+    file.close()
+    print("Finish bidden prices query")
 
 def test_bidder():
     # Connect to the MySQL database
@@ -404,21 +462,30 @@ def config():
     N_PRODUCTS = 20000
     N_CATE = 50
 
+def create_random_data():
+    create_random_users()
+    create_random_products()
+    create_random_categories()
+    create_random_bidden_prices()
+
+def generate_insert_query():
+    generate_insert_users_query()
+    generate_insert_authority_query()
+    generate_insert_bidder_query()
+    generate_insert_auctioneer_query()
+    generate_insert_product_query()
+    generate_insert_authority_query()
+    generate_insert_category_query()
+    generate_insert_bidden_price_query()
+    generate_insert_product_category_query()
+    generate_insert_sold_product_query()
+
 if __name__ == "__main__":
     start = time()
     config()
     init_connection()
-    create_random_users()
-    create_insert_users_query()
-    create_insert_authority_query()
-    create_insert_bidder_query()
-    create_insert_auctioneer_query()
-    create_insert_product_query()
-    create_insert_authority_query()
-    create_insert_category_query()
-    create_insert_bidden_price_query()
-    create_insert_product_category_query()
-    create_insert_sold_product_query()
+    create_random_data()
+    generate_insert_query()
     reset_data()
     run_create_data()
 

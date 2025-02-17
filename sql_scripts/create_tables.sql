@@ -17,6 +17,10 @@ create table `user` (
     `password` varchar(50) not null,
     `enabled` tinyint not null,
     `email` varchar(50) not null,
+    `age` tinyint not null,
+    `name` nvarchar(50) not null,
+    `location` nvarchar(50) not null,
+    `cash` int not null,
     `created_date` datetime not null,
     `last_login` datetime not null,
     `role` varchar(20) not null
@@ -33,13 +37,14 @@ create table `authority` (
 
 create table `bidder` (
 	`id` int not null auto_increment primary key,
-    `cash` int not null,
+    `n_bought_product` int not null,
     foreign key (`id`) references `user`(`id`)
 ) engine=InnoDB default charset=utf8mb4;
 
 create table `auctioneer` (
 	`id` int not null auto_increment primary key,
-    `cash` int not null,
+    `credit` int not null,
+    `n_sold_product` int not null,
     foreign key (`id`) references `user`(`id`)
 ) engine=InnoDB default charset=utf8mb4;
 
@@ -51,7 +56,6 @@ create table `product` (
     `beginning_price` int not null,
     `current_price` int not null,
     `created_date` datetime not null,
-    `sold_date` datetime,
     `state` varchar(20) not null,
     `location` nvarchar(50) not null,
     foreign key (`auctioneer_id`) references `auctioneer` (`id`)
@@ -60,6 +64,7 @@ create index `auctioneer_idx` on `product`(`auctioneer_id`) using btree;
 
 create table `sold_product` (
     `id` int not null auto_increment primary key,
+    `sold_date` datetime not null,
     `bidder_id` int not null,
     foreign key (`bidder_id`) references `bidder`(`id`)
 ) engine=InnoDB default charset=utf8mb4;

@@ -34,7 +34,7 @@ Bidder UI/UX:
    - History (Bought products in the past)
    - My bidding products (The products are being bidden, and one bidder is me)
    - Profiles (My information (name, email, cash, level, rate, ...))
-   - Notification (Notification about )
+   - Notification (Notification about bidding products and )
 Auctioneer UI/UX:
  + View: 
    - Home (Current available product on market)
@@ -43,3 +43,20 @@ Auctioneer UI/UX:
    - My Selling Products (Show selling products state)
    - Profile (My information (name, email, avatar, cash, ...))
    - Notification (Notification about )
+
+User info:
+ - username
+ - password
+ - email
+ - age
+ - name
+ - location
+ - cash
+ - created_date
+Auctioneer:
+ - int credit
+ - List<Product> soldProduct
+ - int nSoldProduct
+Bidder:
+ - List<Product> boughtProduct
+ - int nBoughtProduct

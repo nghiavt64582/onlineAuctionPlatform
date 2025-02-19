@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import com.example.online_auction_platform.entities.Product;
 
@@ -19,5 +21,16 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 
     public List<Product> findByCategories_NameIn(List<String> categoryNames);
 
+    // @Query(value = """
+    //     WITH product_ids AS 
+    //         (SELECT DISTINCT(product_id) AS product_id 
+    //         FROM bidden_price 
+    //         WHERE bidder_id = :bidderId) 
+    //     SELECT * 
+    //     FROM product 
+    //     WHERE id IN (SELECT product_id FROM product_ids);
+    //     """, nativeQuery = true)
+    @Query("SELECT p FROM Product p WHERE p.id IN (SELECT bp.product.id FROM BiddenPrice bp WHERE bp.bidder.id = :bidderId)")
+    List<Product> findBiddingProductByBidderId(@Param("bidderId") int bidderId, Pageable pageable);
 
 }

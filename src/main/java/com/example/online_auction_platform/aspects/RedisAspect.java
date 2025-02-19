@@ -25,7 +25,6 @@ public class RedisAspect {
     @Pointcut("execution(* com.example.online_auction_platform.services.ProductService.findByAuctioneerId(..))")
     private void findByAuctioneerId() {}
 
-
     @Around("findByAuctioneerId()")
     public Object around(ProceedingJoinPoint proceedJoinPoint) {
         Object[] args = proceedJoinPoint.getArgs();
@@ -44,7 +43,7 @@ public class RedisAspect {
             return redisCacheListProduct;
         }
         try {
-            Page<? extends Object> result = (Page<? extends Object>) proceedJoinPoint.proceed();
+            List<? extends Object> result = (List<? extends Object>) proceedJoinPoint.proceed();
             redisService.cacheList(key, result);
             return result;
         } catch (Throwable e) {

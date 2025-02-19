@@ -3,13 +3,9 @@ package com.example.online_auction_platform.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
-import com.example.online_auction_platform.entities.Product;
-import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
@@ -29,7 +25,7 @@ public class RedisService {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public void cacheList(String key, Page<? extends Object> page) {
+    public void cacheList(String key, List<? extends Object> page) {
         try {
             String json = objectMapper.writeValueAsString(page);
             redisTemplate.opsForValue().set(key, json);

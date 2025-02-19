@@ -29,7 +29,7 @@ public class ProductService {
         List<String> categories
     ) {
         System.out.println("ProductServiceImpl.getAllProducts");
-        return productRepo.findAll();
+        return productRepo.findAll(pageable).getContent();
     }
 
     public Product findById(int productId) {
@@ -85,6 +85,20 @@ public class ProductService {
     }
 
     public List<Product> findBiddingProducts(int bidderId, Pageable pageable) {
-        return List.of();
+        return productRepo.findBiddingProductByBidderId(bidderId, pageable);
+    }
+
+    public boolean updateProductInfo(
+        int auctioneerId,
+        int productId
+    ) {
+        return true;
+    }
+
+    public boolean deleteProduct(
+        int auctioneerId,
+        int productId
+    ) {
+        return true;
     }
 }

@@ -9,7 +9,7 @@ public class GetOpenProductReqDto {
     
     int startId;
     int bidderId;
-    int pageStart;
+    int pageNumber;
     int pageSize;
     List<String> categories;
 }

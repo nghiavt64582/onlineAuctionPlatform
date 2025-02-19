@@ -50,7 +50,7 @@ public class User {
     protected int age;
 
     @Column(name = "name")
-    protected int name;
+    protected String name;
 
     @Column(name = "location")
     protected String location;

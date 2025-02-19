@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.online_auction_platform.entities.BiddenPrice;
 import com.example.online_auction_platform.entities.Bidder;
@@ -12,22 +13,15 @@ import com.example.online_auction_platform.repositories.BiddenPriceRepository;
 import com.example.online_auction_platform.repositories.BidderRepository;
 import com.example.online_auction_platform.repositories.ProductRepository;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class BiddenPriceService {
 
     private BiddenPriceRepository biddenPriceRepo;
     private ProductRepository productRepo;
     private BidderRepository bidderRepo;
-
-    public BiddenPriceService(
-        BiddenPriceRepository biddenPriceRepo,
-        ProductRepository productRepo,
-        BidderRepository bidderRepo
-    ) {
-        this.biddenPriceRepo = biddenPriceRepo;
-        this.productRepo = productRepo;
-        this.bidderRepo = bidderRepo;
-    }
 
     public List<BiddenPrice> getBiddenPriceByProductId(int productId) {
         // return biddenPriceRepo.findByProductId(productId);
@@ -36,6 +30,14 @@ public class BiddenPriceService {
 
     public List<BiddenPrice> getBiddenPriceByBidderId(int bidderId) {
         return new ArrayList<>();
+    }
+
+    public boolean processSellProduct(
+        int auctioneerId,
+        int productId
+    ) {
+
+        return true;
     }
 
     public BiddenPrice add(BiddenPrice biddenPrice) {
@@ -75,4 +77,13 @@ public class BiddenPriceService {
         return biddenPriceRepo.save(biddenPrice);
     }
        
+    @Transactional
+    public boolean postNewPrice(
+        int bidderId,
+        int price,
+        int productId
+    ) {
+        
+        return false;
+    }
 }

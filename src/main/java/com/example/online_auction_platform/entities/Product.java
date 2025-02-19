@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -30,37 +32,43 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "product")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Builder
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String imageUrl;
-    private int beginningPrice;
-    private int currentPrice;
+    protected int id;
+
+    @Column(name = "imageUrl")
+    protected String imageUrl;
+
+    @Column(name = "beginning_price")
+    protected int beginningPrice;
+
+    @Column(name = "current_price")
+    protected int currentPrice;
 
     @Column(name = "state")
-    private String state;
+    protected String state;
     
     @Column(name = "location")
-    private String location;
+    protected String location;
 
     @Column(name = "name")
-    private String name;
+    protected String name;
     
     @Column(name = "created_date")
-    private LocalDateTime createdDate;
+    protected LocalDateTime createdDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "auctioneer_id")
     @JsonIgnore
-    private Auctioneer auctioneer;
+    protected Auctioneer auctioneer;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<BiddenPrice> biddenPrices;
+    protected List<BiddenPrice> biddenPrices;
 
     @ManyToMany
     @JoinTable(
@@ -68,7 +76,7 @@ public class Product {
         joinColumns = @JoinColumn(name = "product_id"),
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> categories;
+    protected List<Category> categories;
 
     @Override
     public String toString() {

@@ -6,6 +6,6 @@ import lombok.Data;
 public class GetBiddingProductReqDto {
     
     int bidderId;
-    int pageStart;
+    int pageNumber;
     int pageSize;
 }

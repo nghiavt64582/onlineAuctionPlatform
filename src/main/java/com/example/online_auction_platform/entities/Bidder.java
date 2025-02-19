@@ -12,6 +12,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 
@@ -19,6 +20,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "bidder")
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Bidder extends User {
     

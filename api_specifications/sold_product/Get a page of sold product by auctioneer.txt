@@ -1,0 +1,7 @@
+ - Endpoint: GET /sold_products/bought
+ - Body: GetSoldProductsByAuctioneerReqDto (
+    int auctioneerId;
+    int pageNumber;
+    int pageSize;
+ )
+ - Auth: Role.Bidder

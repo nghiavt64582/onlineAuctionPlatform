@@ -2,7 +2,7 @@
  - Body: GetOpenProductRequestDto (
     int startId;
     int bidderId;
-    int pageStart;
+    int pageNumber;
     int pageSize;
     List<String> categories;
  )

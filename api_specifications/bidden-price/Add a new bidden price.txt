@@ -1,5 +1,5 @@
- - Endpoint: POST /bidden-price
- - Body: BiddenPrice (
+ - Endpoint: POST /bidden-price/bidding
+ - Body BiddingReqDto (
     int bidderId;
     int productId;
     int price;

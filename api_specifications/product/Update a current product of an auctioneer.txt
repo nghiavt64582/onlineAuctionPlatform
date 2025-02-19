@@ -1,4 +1,4 @@
- - Endpoint: PUT /products
+ - Endpoint: PUT /product
  - Body: UpdateProductRequestDto (
     int auctioneerId;
     int productId;

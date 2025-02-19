@@ -1,0 +1,7 @@
+ - Endpoint: POST /bidden-price/sell
+ - Body: SellTheProductReqDto (
+    int bidderId;
+    int productId;
+    int price;
+ )
+ - Auth: Role.Bidder

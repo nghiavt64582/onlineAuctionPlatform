@@ -423,6 +423,7 @@ def test_bidder():
 def execute_query_file(file_path):
     global conn, cursor
     file = open(file_path, "r", encoding='utf-8')
+    start = time()
     count_error = 0
     try:
         lines = file.read().split("\n")
@@ -437,10 +438,10 @@ def execute_query_file(file_path):
                     print(f"Error at line {i}: {e}, query : {query}")
                 count_error += 1
         conn.commit()
-        print(f"Finished execute file {file_path}, queries count : {len(lines)}, count error : {count_error}")
+        print(f"Finished execute file {file_path}, queries count : {len(lines)}, count error : {count_error}, total time : {time() - start}")
     except Exception as e:
         print(e)
-        
+
 def reset_data():
     execute_query_file("sql_scripts/reset_data.sql")
 

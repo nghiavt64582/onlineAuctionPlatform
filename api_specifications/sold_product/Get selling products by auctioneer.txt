@@ -1,0 +1,6 @@
+ - Endpoint: GET /product/selling
+ - Body: GetSellingProductReqDto (
+    int auctioneerId;
+    int productId;
+ )
+ - Auth: Role.Auctioneer

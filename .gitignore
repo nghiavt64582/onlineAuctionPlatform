@@ -43,3 +43,5 @@ notes/Server Cloudfly.txt
 /target/classes
 /src/main/resources/static/images/products
 /products
+/sql_scripts
+/target

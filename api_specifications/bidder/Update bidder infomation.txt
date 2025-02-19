@@ -1,0 +1,9 @@
+ - Endpoint: POST /bidder
+ - Body: UpdateBidderInfoReqDto (
+    int bidderId;
+    String email;
+    int age;
+    String name;
+    String location;
+ )
+ - Auth: Role.Auctioneer

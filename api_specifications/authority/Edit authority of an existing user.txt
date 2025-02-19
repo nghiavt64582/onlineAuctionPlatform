@@ -1,0 +1,7 @@
+ - Endpoint: PUT /auctioneer
+ - Body: UpdateAuthorityUserDto (
+    int userId;
+    String username;
+    String authority;
+ )
+ - Auth: Role.Admin

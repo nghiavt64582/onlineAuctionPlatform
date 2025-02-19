@@ -1,0 +1,6 @@
+ - Endpoint: GET /product/bought
+ - Body: GetBoughtProductByBidderReqDto (
+    int bidderId;
+    int productId;
+ )
+ - Auth: Role.Bidder

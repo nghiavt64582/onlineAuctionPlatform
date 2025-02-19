@@ -2,7 +2,7 @@
  - Body: GetSellingProductRequestDto (
     int startId;
     int auctioneerId;
-    int pageStart;
+    int pageNumber;
     int pageSize;
  )
  - Auth: Role.Auctioneer

@@ -1,5 +1,5 @@
- - Endpoint: GET /products/bidding
- - Body: GetBiddingProductRequestDto (
+ - Endpoint: GET /product/bought
+ - Body: GetSoldProductsByBidderReqDto (
     int bidderId;
     int pageNumber;
     int pageSize;

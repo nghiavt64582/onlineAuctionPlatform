@@ -1,0 +1,6 @@
+ - Endpoint: GET /category
+ - Body: AddNewCategories (
+    int adminId;
+    List<String> categories;
+ )
+ - Auth: Role.Admin

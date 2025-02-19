@@ -1,0 +1,5 @@
+ - Endpoint: GET /bidder
+ - Body: GetBidderInfoReqDto (
+    int bidderId;
+ )
+ - Auth: Role.Bidder

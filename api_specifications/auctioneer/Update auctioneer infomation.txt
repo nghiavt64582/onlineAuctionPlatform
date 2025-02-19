@@ -1,6 +1,9 @@
  - Endpoint: POST /auctioneer
- - Body: GetAuctioneerInfoReqDto (
+ - Body: UpdateAuctioneerInfoReqDto (
     int auctioneerId;
-    String username;
+    String email;
+    int age;
+    String name;
+    String location;
  )
  - Auth: Role.Auctioneer

@@ -1,6 +1,6 @@
  - Endpoint: GET /auctioneer
  - Body: GetAuctioneerInfoReqDto (
-    int pageStart;
+    int pageNumber;
     int pageSize;
  )
- - Auth: Role.Auctioneer
+ - Auth: Role.Admin

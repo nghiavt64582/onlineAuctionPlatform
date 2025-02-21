@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 
 import com.example.online_auction_platform.dto.request.product.AddProductReqDto;
 import com.example.online_auction_platform.entities.Product;
+import com.example.online_auction_platform.entities.SoldProduct;
 import com.example.online_auction_platform.repositories.ProductRepository;
+import com.example.online_auction_platform.repositories.SoldProductRepository;
 
 import lombok.AllArgsConstructor;
 
@@ -18,6 +20,7 @@ import lombok.AllArgsConstructor;
 public class ProductService {
 
     private ProductRepository productRepo;
+    private SoldProductRepository soldProductRepo;
     private ImageService imageService;
 
     public List<Product> findProductByAuctioneerId(int auctioneerId) {
@@ -85,7 +88,15 @@ public class ProductService {
     }
 
     public List<Product> findBiddingProducts(int bidderId, Pageable pageable) {
-        return productRepo.findBiddingProductByBidderId(bidderId, pageable);
+        List<Product> result = productRepo.findBiddingProductByBidderId(bidderId, pageable);
+        result.forEach(product -> product.setBiddenPrices(List.of()));
+        return result;
+    }
+
+    public List<SoldProduct> findSoldProductByBidderId(int bidderId, Pageable pageable) {
+        List<SoldProduct> result = soldProductRepo.findByBidder_Id(bidderId, pageable);
+        result.forEach(product -> product.setBiddenPrices(List.of()));
+        return result;
     }
 
     public boolean updateProductInfo(

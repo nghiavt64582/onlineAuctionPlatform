@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.online_auction_platform.dto.request.product.GetSellingProductReqDto;
+import com.example.online_auction_platform.dto.request.product.GetSoldProductsByBidderReqDto;
 import com.example.online_auction_platform.dto.request.product.UpdateProductRequestDto;
 import com.example.online_auction_platform.dto.request.product.AddProductReqDto;
 import com.example.online_auction_platform.dto.request.product.DeleteProductReqDto;
 import com.example.online_auction_platform.dto.request.product.GetBiddingProductReqDto;
 import com.example.online_auction_platform.dto.request.product.GetOpenProductReqDto;
+import com.example.online_auction_platform.dto.request.product.GetProductReqDto;
 import com.example.online_auction_platform.entities.Product;
+import com.example.online_auction_platform.entities.SoldProduct;
 import com.example.online_auction_platform.services.ProductService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -96,6 +99,26 @@ public class ProductController {
             pageRequest
         );
         return result;
+    }
+
+    @GetMapping("/bought")
+    public List<SoldProduct> getSoldProductByBidderId(
+        @RequestBody GetSoldProductsByBidderReqDto req
+    ) {
+        List<SoldProduct> products = productService.findSoldProductByBidderId(
+            req.getBidderId(), 
+            PageRequest.of(req.getPageNumber(), req.getPageSize())
+        );
+        products.forEach(product -> product.setBiddenPrices(List.of()));
+        return products;
+    }
+
+    @GetMapping("single-info")
+    public Product getProductInfo(
+        @RequestBody GetProductReqDto req
+    ) {
+        Product product = productService.findById(req.getProductId());
+        return product;
     }
 
     @PutMapping("/")

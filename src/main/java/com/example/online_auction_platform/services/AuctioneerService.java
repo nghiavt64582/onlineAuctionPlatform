@@ -20,7 +20,7 @@ public class AuctioneerService {
         this.auctioneerRepo = auctioneerRepo;
     }
 
-    public Page<Auctioneer> getAllAutioneers() {
+    public Page<Auctioneer> getAllAuctioneers() {
         Pageable pageable = PageRequest.of(0, 100, Sort.by("ASC"));
         return auctioneerRepo.findAllAuctioneers(pageable);
     }
